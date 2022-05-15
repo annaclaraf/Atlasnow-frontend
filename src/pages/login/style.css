@@ -1,0 +1,121 @@
+:root {
+    --hue: 0;
+
+    --primary-color: hsl(var(--hue), 0%, 0%);
+   
+    --box-background: hsl(39, 100%, 97%);
+    
+    --Button-animation: hsl(var(--hue), 0%, 30%);
+
+    font-size: 62.5%;
+    /* 1rem = 10px */
+}
+
+main#login-body, body {
+    height:100%;
+    background-color: grey;
+    overflow: overlay;
+    box-sizing: border-box;
+    border: none;
+}
+
+main#login-body textarea:focus,
+input:focus {
+    outline: none;
+}
+
+#login-body label {
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+
+.button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4rem;
+    margin-bottom: 6rem;
+    padding: 1.6rem 3.2rem;
+    width: fit-content;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.button:hover {
+    background-color: var(--Button-animation);
+}
+
+
+#login-body textarea:focus,
+input:focus {
+    outline: none;
+}
+
+#login-body label {
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+
+#login-form {
+    padding: 2rem 3rem;
+    font-size: 2rem;
+    margin: auto;
+    width: 40rem;
+    background-color: var(--box-background);
+    margin-top: 10vh;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#login-form form {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+#login-form label,
+#login-form input {
+    display: block;
+    width: 95%;
+    text-align: left;
+}
+
+#form input {
+    border:none;
+    border-bottom: 2px solid black;
+    padding: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+
+}
+
+#form input:focus {
+    border-bottom: 2px solid gray;
+}
+
+#form input[type='submit'],
+form input[type='submit'] {
+    text-align: center;
+    width:100%;
+}
+
+#logo-login {
+    margin-top: 2rem;
+}
+
+.teste {
+    animation: hue-animation 1s alternate infinite;
+}
+
+@keyframes hue-animation {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}

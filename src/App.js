@@ -1,7 +1,9 @@
+import { Login } from './pages/login/index'
+
 function App() {
   return (
-    <div>OI</div>
-  );
+    <Login />
+ );
 }
 
 export default App;
