@@ -1,0 +1,68 @@
+body {
+    background: #C4C4C4;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+main aside.open {
+    flex: 1;
+    background-color: #FAFAFA;
+    height: 100vh;
+}
+
+main aside.close {
+    flex: 0.5;
+}
+
+main aside.close > div {
+    visibility: hidden;
+    z-index: 0;
+    width: 1px;
+    height: 1px;
+}
+
+main aside.close > div button {
+    visibility: visible;
+    z-index: 1;
+}
+
+main aside.open > div {
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+main aside > div hr {
+    margin: 10px 0;
+}
+
+main aside > div > div.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+main aside > div > div.links {
+    text-align: left;
+    width: 70%;
+    margin: auto;
+
+}
+
+main aside button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+a {
+    font-size: 16;
+    font-weight: 500;
+    color: #999;
+    text-decoration: none;
+}
