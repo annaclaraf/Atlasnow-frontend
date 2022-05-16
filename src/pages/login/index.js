@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api'
 
 import './style.css'
 
 export function Login() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,8 +17,7 @@ export function Login() {
         try {
             await api.post("/login", { email, CPF: password })
 
-            console.log('ok')
-
+            navigate('/home');
         } catch (err) {
             alert(err.response.data.error);
         }
