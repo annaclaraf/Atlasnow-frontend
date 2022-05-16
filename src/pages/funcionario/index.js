@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api'
 
@@ -7,6 +8,8 @@ import { Sidebar } from '../../components/Sidebar/index'
 import './style.css'
 
 export function Funcionario() {
+    const navigate = useNavigate();
+
     const [CPF, setCPF] = useState("");
     const [funcionario, setFuncionario] = useState([]);
 
@@ -31,6 +34,10 @@ export function Funcionario() {
         }
     }
 
+    async function paginaCadastro() {
+        navigate('/funcionarios/cadastro')
+    }
+
     return (
         <main>
             <Sidebar />
@@ -51,7 +58,7 @@ export function Funcionario() {
                         </button>
                     </div>
 
-                    <button>Cadastrar Funcionario</button>
+                    <button onClick={paginaCadastro}>Cadastrar Funcionario</button>
                 </header>
 
                 <div>
