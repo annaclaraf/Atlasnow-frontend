@@ -3,43 +3,39 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-main {
-    display: flex;
-}
-
-main aside.open {
+aside {
     flex: 1;
     background-color: #FAFAFA;
     height: 100vh;
 }
 
-main aside.close {
-    flex: 0.5;
+aside.close {
+    flex: 0.3;
 }
 
-main aside.close > div {
+aside.close > div {
     visibility: hidden;
     z-index: 0;
     width: 1px;
     height: 1px;
 }
 
-main aside.close > div button {
+aside.close > div button {
     visibility: visible;
     z-index: 1;
 }
 
-main aside.open > div {
+aside.open > div {
     margin-top: 2rem;
     justify-content: center;
     align-items: flex-start;
 }
 
-main aside > div hr {
+aside > div hr {
     margin: 10px 0;
 }
 
-main aside > div > div.div {
+aside > div > div.div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,14 +43,14 @@ main aside > div > div.div {
 }
 
 
-main aside > div > div.links {
+aside > div > div.links {
     text-align: left;
     width: 70%;
     margin: auto;
 
 }
 
-main aside button {
+aside button {
     border: none;
     background-color: transparent;
     padding: 0;

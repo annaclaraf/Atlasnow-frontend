@@ -38,6 +38,7 @@ export function Sidebar() {
                 <hr />
 
                 <div className='links'>
+                    <Link to='/home'>HOME</Link><br />
                     <Link to='/funcionarios'>FUNCIONARIOS</Link><br />
                     <Link to='/emissores'>EMISSORES</Link>
                 </div>
