@@ -15,7 +15,9 @@ export function Login() {
         event.preventDefault()
 
         try {
-            await api.post("/login", { email, CPF: password })
+            const { data } = await api.post("/login", { email, CPF: password })
+            
+            api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
             navigate('/home');
         } catch (err) {
