@@ -8,6 +8,7 @@ import { Sidebar } from '../../components/Sidebar/index'
 import './style.css'
 
 export function Funcionario() {
+    const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
     const [CPF, setCPF] = useState("");
@@ -15,7 +16,11 @@ export function Funcionario() {
 
     useEffect(() => {
         async function loadProducts() {
-            const response = await api.get('/funcionarios');
+            const response = await api.get('/funcionarios', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setFuncionario(response.data)
         }
         loadProducts()
@@ -25,7 +30,11 @@ export function Funcionario() {
         event.preventDefault()
 
         try {
-            const response = await api.get(`/funcionarios/${CPF}`)
+            const response = await api.get(`/funcionarios/${CPF}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             setFuncionario(response.data)
 
             setCPF('')

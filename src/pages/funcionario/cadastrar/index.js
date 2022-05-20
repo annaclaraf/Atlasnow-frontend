@@ -8,6 +8,7 @@ import './style.css'
 import { Sidebar } from '../../../components/Sidebar/index'
 
 export function FuncionarioCadastro() {
+    const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
     const [CPF, setCPF] = useState("");
@@ -37,6 +38,10 @@ export function FuncionarioCadastro() {
                 numero,
                 cidade,
                 estado
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             })
 
             navigate('/funcionarios');
