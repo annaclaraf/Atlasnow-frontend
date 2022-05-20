@@ -13,29 +13,30 @@ aside.close {
     flex: 0.3;
 }
 
-aside.close > div {
+aside.close>div {
     visibility: hidden;
     z-index: 0;
     width: 1px;
     height: 1px;
 }
 
-aside.close > div button {
+aside.close>div button {
     visibility: visible;
+
     z-index: 1;
 }
 
-aside.open > div {
+aside.open>div {
     margin-top: 2rem;
     justify-content: center;
     align-items: flex-start;
 }
 
-aside > div hr {
+aside>div hr {
     margin: 10px 0;
 }
 
-aside > div > div.div {
+aside>div>div.div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +44,7 @@ aside > div > div.div {
 }
 
 
-aside > div > div.links {
+aside>div>div.links {
     text-align: left;
     width: 70%;
     margin: auto;
@@ -61,4 +62,16 @@ a {
     font-weight: 500;
     color: #999;
     text-decoration: none;
+}
+
+#root .open {
+    transition: 1s;
+}
+
+aside.open div {
+    transition: 1s;
+}
+
+#root .close {
+    transition: none;
 }

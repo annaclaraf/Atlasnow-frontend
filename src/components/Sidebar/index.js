@@ -24,7 +24,7 @@ export function Sidebar() {
         <aside className={open ? 'open' : 'close'}>
             <div className={open ? 'open' : 'close'}>
                 <div className='div'>
-                    <h1>Ola User</h1>
+                    <h1>Olá User</h1>
 
                     <button onClick={handleMenu}>
                         <svg width="40" height="20" viewBox="0 0 52 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,10 +37,10 @@ export function Sidebar() {
 
                 <hr />
 
-                <div className='links'>
+                <div>
                     <Link to='/home'>HOME</Link><br />
                     <Link to='/funcionarios'>FUNCIONARIOS</Link><br />
-                    <Link to='/emissores'>EMISSORES</Link>
+                    <Link to='/emissor'>EMISSORES</Link>
                 </div>
             </div>
         </aside>

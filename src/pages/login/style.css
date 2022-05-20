@@ -110,12 +110,3 @@ form input[type='submit'] {
     margin-top: 2rem;
 }
 
-.teste {
-    animation: hue-animation 1s alternate infinite;
-}
-
-@keyframes hue-animation {
-    100% {
-        filter: hue-rotate(360deg);
-    }
-}

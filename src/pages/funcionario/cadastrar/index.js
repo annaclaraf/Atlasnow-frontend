@@ -151,7 +151,8 @@ export function FuncionarioCadastro() {
                 </div>
 
                 <footer>
-                    <button onClick={handleCreate}>Cadastrar</button>
+                                 
+                <button className="cadastrar" onClick={handleCreate}>Cadastrar</button>
                 </footer>
             </section>
         </main>
