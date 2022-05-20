@@ -1,0 +1,99 @@
+body {
+    background: #C4C4C4;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+main section {
+    flex: 5;
+    margin: auto;
+    margin-top: 3rem;
+    width: 90%;
+    
+}
+
+main header  {
+    display: flex;
+    flex-direction: left;
+    justify-content: space-around;
+   
+      
+}
+
+header #busca {
+    justify-content: space-around;
+    background-color: white;
+    display: flex;
+    padding: 0 10px;
+    border-radius: 8px;
+    height: 35px;
+}
+
+header div input {
+    border: none;
+    width: 300px;
+    border-radius: 8px;
+}
+
+header div button,
+table button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+h2 {
+inset-inline: auto;
+display: flex;
+flex-direction: left;
+flex-direction: column;
+font-size: 4rem;
+}
+
+
+#funcionarios #title h2{
+    padding-bottom: 10rem;
+    
+}
+
+#funcionarios #opcao button{
+margin-right: 5rem;
+border: none;
+background-color: white;
+color: black;
+padding: 10px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+}
+
+#funcionarios #opcao button:hover,
+#funcionarios #footer button:hover
+{
+background-color: red;
+transition: background 0.2s;
+}
+
+
+
+ 
+
+#opcao-1 {
+display: flex;
+flex-wrap: wrap;
+
+}
+
+.b1{
+flex: 1 1 120px;
+aspect-ratio: 1 / 1;
+background-color: red;
+}
+.contente{
+flex: 1 1 200px;
+}
+
