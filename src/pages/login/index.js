@@ -15,7 +15,7 @@ export function Login() {
         event.preventDefault()
 
         try {
-            const response = await api.post("/login", { email, CPF: password })
+            const response = await api.post("/login", { email, password })
 
             localStorage.setItem('token', response.data.token);
 
