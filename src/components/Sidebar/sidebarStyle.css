@@ -1,11 +1,11 @@
 body {
-    background: #C4C4C4;
+    background: #fffff0;
     font-family: 'Poppins', sans-serif;
 }
 
 aside {
     flex: 1;
-    background-color: #FAFAFA;
+    background-color: #add8e6;
     height: 100vh;
 }
 
@@ -43,12 +43,10 @@ aside>div>div.div {
     gap: 20px;
 }
 
-
 aside>div>div.links {
     text-align: left;
     width: 70%;
     margin: auto;
-
 }
 
 aside button {
@@ -58,9 +56,9 @@ aside button {
 }
 
 a {
-    font-size: 16;
+    font-size: 20;
     font-weight: 500;
-    color: #999;
+    color: black;
     text-decoration: none;
 }
 
