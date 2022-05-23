@@ -1,0 +1,19 @@
+.centro {
+  display: flex;
+  justify-content: center;
+}
+.esquerda {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+.direita td {
+  display: flex;
+
+  height: 47px;
+}
+#customers caption {
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
