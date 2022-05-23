@@ -1,48 +1,50 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import * as FaIcons from 'react-icons/fa'
+import * as AiIcons from 'react-icons/ai'
+import { SidebarData } from './SidebarData'
+import { IconContext } from 'react-icons'
 
-import './sidebarStyle.css'
+import './style.css'
 
 export function Sidebar() {
-    const [open, setOpen] = useState(false);
+  const [sidebar, setSidebar] = useState(false)
 
-    async function handleMenu() {
-        try {
-            if (open) {
-                setOpen(false)
-            }
-            else {
-                setOpen(true);
-            }
+  const showSidebar = () => setSidebar(!sidebar)
 
-        } catch (err) {
-            console.log(err);
-        }
-    }
+  return (
+    <>
+      <IconContext.Provider value={{ color: '#fff' }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
+        </div>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" className="menu-bars">
+                <AiIcons.AiOutlineClose />
+              </Link>
+            </li>
+            <li className="user">
+              <FaIcons.FaUserCircle />
+              ADMIN
+            </li>
 
-    return (
-        <aside className={open ? 'open' : 'close'}>
-            <div className={open ? 'open' : 'close'}>
-                <div className='div'>
-                    <h1>Olá User</h1>
-
-                    <button onClick={handleMenu}>
-                        <svg width="40" height="20" viewBox="0 0 52 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0.5" width="51" height="8" rx="4" fill="#727272" />
-                            <rect x="0.5" y="12" width="51" height="8" rx="4" fill="#727272" />
-                            <rect x="0.5" y="24" width="51" height="8" rx="4" fill="#727272" />
-                        </svg>
-                    </button>
-                </div>
-
-                <hr />
-
-                <div>
-                    <Link to='/home'>HOME</Link><br />
-                    <Link to='/funcionarios'>FUNCIONARIOS</Link><br />
-                    <Link to='/emissor'>EMISSORES</Link>
-                </div>
-            </div>
-        </aside>
-    );
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
+  )
 }

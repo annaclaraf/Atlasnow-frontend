@@ -1,0 +1,40 @@
+.centro {
+  display: flex;
+  justify-content: left;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  justify-content: space-evenly;
+}
+
+.borda #customers caption {
+  border: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.borda #customers th {
+  border-radius: 1rem;
+  width: 150px;
+  text-align: center;
+}
+
+.borda {
+  margin-top: 40px;
+  margin-inline: auto;
+  border: 2px solid black;
+  border-radius: 5rem;
+  width: 60%;
+}
+
+#view #busca {
+  padding: 0;
+}
+
+form .button {
+  margin-top: 50px;
+}

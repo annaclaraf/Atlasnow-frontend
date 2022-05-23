@@ -17,3 +17,6 @@
   padding-bottom: 20px;
   font-weight: bold;
 }
+#view #busca {
+  padding: 0;
+}
