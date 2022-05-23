@@ -1,59 +1,178 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
 
 import { api } from '../../services/api'
 
 import { Sidebar } from '../../components/Sidebar/index'
 
-import './style.css'
+import './emissorStyle.css'
 
 export function Emissor() {
-    const navigate = useNavigate();
-    
-    
-    async function paginaEditar() {
+    const token = localStorage.getItem('token');
+
+    const navigate = useNavigate()
+
+    const [id, setId] = useState('')
+    const [emissor, setEmissor] = useState([])
+
+    useEffect(() => {
+        async function loadEmissores() {
+            const response = await api.get('/emissores', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            setEmissor(response.data)
+        }
+        loadEmissores()
+    }, [])
+
+    async function handleSearch(event) {
+        event.preventDefault()
+
+        try {
+            const response = await api.get(`/emissores/${id}`,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            setEmissor(response.data)
+
+            setId('')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async function paginaInicial() {
+        navigate('/home')
+    }
+    async function paginaCadastro() {
+        navigate('/emissor/cadastrar')
+    }
+    async function Visualizar(id) {
+        await localStorage.setItem('id', id);
+        navigate('/emissor/view')
+    }
+    async function Editar(id) {
+        await localStorage.setItem('id', id);
         navigate('/emissor/editar')
     }
-    async function paginaLista() {
-        navigate('/emissor/lista')
+    async function Excluir(id) {
+        await api.delete(`/emissores/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        alert('O emissor foi excluído!')
+        navigate('/emissor')
     }
-    
+
     return (
         <main>
-            
-           <Sidebar />
+            <Sidebar />
 
-            <section id="emissor">
-            
-            <header id="title">
-            <h2>Emissor</h2>                          
-            </header>
-            <header id="funcionalidades">
-               
-                <div id="opcao">
+            <section>
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+                />
 
-                 <button class="b1" onClick={paginaEditar}>
-                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M36.5 28V21.5H30V18.5H36.5V12H39.5V18.5H46V21.5H39.5V28ZM18 23.95Q14.7 23.95 12.6 21.85Q10.5 19.75 10.5 16.45Q10.5 13.15 12.6 11.05Q14.7 8.95 18 8.95Q21.3 8.95 23.4 11.05Q25.5 13.15 25.5 16.45Q25.5 19.75 23.4 21.85Q21.3 23.95 18 23.95ZM2 40V35.3Q2 33.55 2.9 32.125Q3.8 30.7 5.4 30Q9.15 28.35 12.075 27.675Q15 27 18 27Q21 27 23.925 27.675Q26.85 28.35 30.55 30Q32.15 30.75 33.075 32.15Q34 33.55 34 35.3V40ZM5 37H31V35.3Q31 34.5 30.6 33.775Q30.2 33.05 29.35 32.7Q25.85 31 23.375 30.5Q20.9 30 18 30Q15.1 30 12.625 30.525Q10.15 31.05 6.6 32.7Q5.85 33.05 5.425 33.775Q5 34.5 5 35.3ZM18 20.95Q19.95 20.95 21.225 19.675Q22.5 18.4 22.5 16.45Q22.5 14.5 21.225 13.225Q19.95 11.95 18 11.95Q16.05 11.95 14.775 13.225Q13.5 14.5 13.5 16.45Q13.5 18.4 14.775 19.675Q16.05 20.95 18 20.95ZM18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45Q18 16.45 18 16.45ZM18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Q18 30 18 30Z"/></svg><h3>Cadastar Emisor</h3>
-                                 
-                 </button>
-                 <button class="b2" onClick={paginaLista}>
-                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14.5 17V14H42V17ZM14.5 25.5V22.5H42V25.5ZM14.5 34V31H42V34ZM7.5 17Q6.85 17 6.425 16.575Q6 16.15 6 15.5Q6 14.85 6.425 14.425Q6.85 14 7.5 14Q8.15 14 8.575 14.425Q9 14.85 9 15.5Q9 16.15 8.575 16.575Q8.15 17 7.5 17ZM7.5 25.5Q6.85 25.5 6.425 25.075Q6 24.65 6 24Q6 23.35 6.425 22.925Q6.85 22.5 7.5 22.5Q8.15 22.5 8.575 22.925Q9 23.35 9 24Q9 24.65 8.575 25.075Q8.15 25.5 7.5 25.5ZM7.5 34Q6.85 34 6.425 33.575Q6 33.15 6 32.5Q6 31.85 6.425 31.425Q6.85 31 7.5 31Q8.15 31 8.575 31.425Q9 31.85 9 32.5Q9 33.15 8.575 33.575Q8.15 34 7.5 34Z"/></svg>    <h3>Lista de Emissores</h3>
-                                 
-                 </button>
-                  
-                 
-                   
-                    
-                 
-                 </div>
-            </header>
-         
-            
-            
-            
-        </section>
-            
+                <header >
+                    <h2>EMISSORES</h2>
+
+                    <div id="busca">
+                        <input
+                            type="text"
+                            placeholder="Buscar Emissor"
+                            onChange={event => setId(event.target.value)}
+                            value={id}
+                        />
+                        <button onClick={handleSearch}>
+                            <svg
+                                fill="#000000"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 50 50"
+                                width="20px"
+                                height="20px"
+                            >
+                                <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button className="button" onClick={paginaCadastro}>
+                        Cadastrar emissor
+                    </button>
+                </header>
+
+                <div>
+                    <table id="customers">
+                        <caption>Lista de Emissores:</caption>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data Admissão</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        {emissor.map(emissor => {
+                            return (
+                                <tbody key={emissor.id}>
+                                    <tr>
+                                        <td className="nome">{emissor.nome}</td>
+                                        <td className="setor">{
+                                            format(new Date(emissor.dataAdmissao), 'dd/MM/yyyy')
+                                        }
+                                        </td>
+                                        <td className="icones">
+                                            <button className="icon" onClick={() => Visualizar(emissor.id)}>
+                                                {' '}
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="24"
+                                                    width="24"
+                                                >
+                                                    <path d="M12 15.5Q13.675 15.5 14.838 14.337Q16 13.175 16 11.5Q16 9.825 14.838 8.662Q13.675 7.5 12 7.5Q10.325 7.5 9.163 8.662Q8 9.825 8 11.5Q8 13.175 9.163 14.337Q10.325 15.5 12 15.5ZM12 14.25Q10.85 14.25 10.05 13.45Q9.25 12.65 9.25 11.5Q9.25 10.35 10.05 9.55Q10.85 8.75 12 8.75Q13.15 8.75 13.95 9.55Q14.75 10.35 14.75 11.5Q14.75 12.65 13.95 13.45Q13.15 14.25 12 14.25ZM12 18.45Q8.525 18.45 5.7 16.55Q2.875 14.65 1.5 11.5Q2.875 8.35 5.7 6.45Q8.525 4.55 12 4.55Q15.475 4.55 18.3 6.45Q21.125 8.35 22.5 11.5Q21.125 14.65 18.3 16.55Q15.475 18.45 12 18.45ZM12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5ZM12 17.1Q14.875 17.1 17.3 15.588Q19.725 14.075 21 11.5Q19.725 8.925 17.3 7.412Q14.875 5.9 12 5.9Q9.125 5.9 6.7 7.412Q4.275 8.925 3 11.5Q4.275 14.075 6.7 15.588Q9.125 17.1 12 17.1Z" />
+                                                </svg>
+                                                <br></br>
+                                                Visualizar
+                                            </button>
+                                            <button className="icon" onClick={() => Editar(emissor.id)}>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="24"
+                                                    width="24"
+                                                >
+                                                    <path d="M19.9 14.775 18.225 13.1 18.95 12.375Q19.175 12.15 19.425 12.15Q19.675 12.15 19.9 12.375L20.625 13.1Q20.85 13.325 20.85 13.575Q20.85 13.825 20.625 14.05ZM12.325 20.675V19L17.525 13.8L19.2 15.475L14 20.675ZM3.05 15.95V14.6H10.9V15.95ZM3.05 11.5V10.15H14.95V11.5ZM3.05 7V5.65H14.95V7Z" />
+                                                </svg>
+                                                <br></br>
+                                                Editar
+                                            </button>
+                                            <button className="icon-delete" onClick={() => Excluir(emissor.id)}>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="24"
+                                                    width="24"
+                                                >
+                                                    <path d="M6.3 18.7 5.35 17.7 11.025 12 5.35 6.25 6.3 5.25 12.025 11 17.7 5.25 18.65 6.25 12.975 12 18.65 17.7 17.7 18.7 12.025 12.95Z" />
+                                                </svg>
+                                                <br></br>
+                                                Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        })}
+                    </table>
+                </div>
+                <footer>
+                    <button className="button" onClick={paginaInicial}>
+                        Voltar
+                    </button>
+                </footer>
+            </section>
         </main>
-);
-
+    )
 }
