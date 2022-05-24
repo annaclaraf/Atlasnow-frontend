@@ -33,6 +33,7 @@ header #busca {
 
 header div input {
   border: none;
+  outline: none;
   width: 300px;
   border-radius: 8px;
 }
