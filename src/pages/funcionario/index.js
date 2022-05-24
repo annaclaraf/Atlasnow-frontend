@@ -40,7 +40,8 @@ export function Funcionario() {
 
       setCPF('')
     } catch (err) {
-      console.log(err)
+      alert(err.response.data.error)
+      setCPF('')
     }
   }
 

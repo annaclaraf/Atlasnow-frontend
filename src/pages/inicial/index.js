@@ -69,7 +69,7 @@ export function Inicial() {
               </li>
             </ul>
 
-            <Link to="/login" onClick={openMenu} className="button">
+            <Link to="/login" className="button">
               Faça o seu login
             </Link>
             <ul className="social-mideas">
