@@ -1,37 +1,27 @@
-:root {
-  --hue: 0;
-
-  --primary-color: hsl(var(--hue), 0%, 0%);
-
-  --box-background: hsl(39, 100%, 97%);
-
-  --Button-animation: hsl(var(--hue), 0%, 30%);
-
-  font-size: 62.5%;
-  /* 1rem = 10px */
-}
-
-main#login-body,
-body {
-  height: 100vh;
-  background-color: grey;
-  overflow: overlay;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   border: none;
 }
-
-main#login-body textarea:focus,
-input:focus {
-  outline: none;
+main#login-body,
+body {
+  height: 100vh;
+  background-color: #060b26;
+  overflow: overlay;
 }
 
+main#login-body textarea:focus,
+main#login-body input:focus {
+  outline: none;
+}
 #login-body label {
   font-size: 2rem;
   margin-top: 3rem;
 }
 
 .button {
-  background-color: var(--primary-color);
+  background-color: #060b26;
   border: none;
   border-radius: 4rem;
   margin-bottom: 6rem;
@@ -39,7 +29,7 @@ input:focus {
   width: fit-content;
   color: white;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -51,52 +41,47 @@ input:focus {
 }
 
 .button:hover {
-  background-color: var(--Button-animation);
-}
-
-#login-body textarea:focus,
-input:focus {
-  outline: none;
-}
-
-#login-body label {
-  font-size: 2rem;
-  margin-top: 3rem;
+  background-color: #1a83ff;
 }
 
 #login-form {
   padding: 2rem 3rem;
   font-size: 2rem;
-  margin: auto;
-  width: 40rem;
+  margin-inline: auto;
+  width: 500px;
   background-color: var(--box-background);
   margin-top: 10vh;
+  margin-bottom: 35vh;
+  padding: 20px 30px;
   border-radius: 10px;
   text-align: center;
 }
 
 #login-form form {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
-
+form#form {
+  width: 70%;
+}
 #login-form label,
-#login-form input {
+form#form input {
   display: block;
-  width: 95%;
+  width: 100%;
   text-align: left;
 }
 
 #form input {
-  border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #060b26;
   padding: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
+}
+#form input.button {
+  border-bottom: 2px solid #1a83ff;
 }
 
 #form input:focus {
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #1a83ff;
 }
 
 #form input[type='submit'],

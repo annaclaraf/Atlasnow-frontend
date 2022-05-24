@@ -108,6 +108,9 @@ button.voltar svg {
   font-size: 40px;
   cursor: pointer;
 }
+button.voltar svg:hover {
+  color: #1a83ff;
+}
 
 button.cadastrar:hover {
   background-color: #1a83ff;

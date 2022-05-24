@@ -58,7 +58,7 @@ h4 {
   border-right: none;
 }
 .wrapper-cadastro input:hover {
-  color: gray;
+  color: #1a83ff;
 }
 .wrapper-cadastro .button {
   margin-inline: auto;

@@ -1,16 +1,16 @@
 :root {
   --hue: 0;
 
-  --primary-color: hsl(var(--hue), 0%, 0%);
+  --primary-color: #060b26;
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
   --box-background: hsl(39, 100%, 97%);
   /*brand-beige*/
-  --background-color: hsl(60%, 3%, 35%);
+  --background-color: #1a83ff;
   --brand-green-light-02: hsl(calc(var(--hue) + 10), 14%, 97%);
   /* brand-light*/
   --navi-height: 7.2rem;
-  --Button-animation: hsl(var(--hue), 0%, 30%);
+  --Button-animation: #1a83ff;
 
   font-size: 62.5%;
   /* 1rem = 10px */
@@ -19,7 +19,7 @@
 .wrapper {
   width: min(50rem, 100%);
   margin-inline: auto;
-  margin-top: 2rem;
+
   padding-inline: 2.4rem;
   padding: 3rem 3rem;
 }
@@ -157,7 +157,7 @@ body.menu-expanded {
   overflow: hidden;
 }
 
-body.menu-expanded> :not(nav) {
+body.menu-expanded > :not(nav) {
   visibility: hidden;
 }
 
@@ -260,7 +260,6 @@ body.menu-expanded button path {
   color: var(--paragraph);
   margin-bottom: 3.2rem;
 }
-
 
 #home .Box {
   width: 100%;
@@ -375,7 +374,6 @@ footer .social-mideas {
 /* #####-RESPONSIVO-##### */
 
 @media (min-width: 1024px) {
-
   /* #####-GERAL-##### */
   body {
     overflow: auto;
@@ -515,7 +513,7 @@ footer .social-mideas {
   }
 
   nav#navigation.scroll .menu a.button:hover {
-    background-color: gray;
+    background-color: var(--background-color);
     color: white;
 
     border: none;
@@ -557,7 +555,7 @@ footer .social-mideas {
     gap: 0;
   }
 
-  #home .Box .inside-box+.inside-box {
+  #home .Box .inside-box + .inside-box {
     border-left: 1px solid var(--primary-color);
   }
 
