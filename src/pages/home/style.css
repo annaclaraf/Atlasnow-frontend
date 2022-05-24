@@ -4,3 +4,23 @@ main section {
     margin-top: 3rem;
     width: 90%;
 }
+
+main div.dashboard {
+    margin-top: 2rem;
+    display: flex;
+    width: 80%;
+
+    margin-inline: auto;
+    gap: 2rem;
+}
+
+main div.dashboard .card-box {
+    background-color: rgb(238, 236, 236);
+    width: 200px;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+main div.dashboard .card-box h3 {
+    padding: 0;
+}

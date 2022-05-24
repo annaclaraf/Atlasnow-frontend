@@ -13,6 +13,7 @@ export function Funcionario() {
 
   const [CPF, setCPF] = useState('')
   const [funcionario, setFuncionario] = useState([])
+  const [load, setLoad] = useState([])
 
   useEffect(() => {
     async function loadFuncionarios() {
@@ -24,7 +25,7 @@ export function Funcionario() {
       setFuncionario(response.data)
     }
     loadFuncionarios()
-  }, [])
+  }, [load])
 
   async function handleSearch(event) {
     event.preventDefault()
@@ -58,13 +59,13 @@ export function Funcionario() {
     navigate('/funcionarios/editar')
   }
   async function Excluir(cpf) {
-    await api.delete(`/funcionarios/${cpf}`, {
+    const response = await api.delete(`/funcionarios/${cpf}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    alert('O funcionarios foi excluído!')
-    navigate('/funcionarios')
+    alert('O funcionario foi excluído!')
+    setLoad(response)
   }
 
   return (

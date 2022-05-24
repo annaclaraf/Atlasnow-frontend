@@ -286,6 +286,7 @@ body.menu-expanded button path {
   margin: 0;
   color: var(--primary-color);
   line-height: 150%;
+  text-align: center;
 }
 
 /* #####-SERVICES-##### */
@@ -350,24 +351,24 @@ body.menu-expanded button path {
 }
 
 /* #####-FOOTER-##### */
-footer {
+.inicial footer {
   background-color: var(--primary-color);
   text-align: left;
   color: white;
 }
 
-footer .logo {
+.inicial footer .logo {
   display: inline-block;
   margin-bottom: 2.4rem;
 }
 
-footer p {
+.inicial footer p {
   color: var(--box-background);
   line-height: 2;
   margin-bottom: 3.2rem;
 }
 
-footer .social-mideas {
+.inicial footer .social-mideas {
   justify-content: flex-start;
 }
 
@@ -612,16 +613,16 @@ footer .social-mideas {
     width: 40.4rem;
   }
 
-  footer .wrapper {
+  .inicial footer .wrapper {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'A B';
   }
 
-  footer .coluna-a {
+  .inicial footer .coluna-a {
     align-self: center;
   }
 
-  footer .coluna-b {
+  .inicial footer .coluna-b {
     align-self: center;
     justify-self: end;
   }
