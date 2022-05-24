@@ -60,7 +60,7 @@ export function Login() {
         </div>
         <form id="form" onSubmit={handleLogin}>
           <label id="espace" htmlFor="Email">
-            Email
+            E-mail
           </label>
           <input
             type="email"

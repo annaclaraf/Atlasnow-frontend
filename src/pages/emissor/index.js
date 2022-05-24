@@ -105,7 +105,7 @@ export function Emissor() {
             <caption>Lista de Emissores:</caption>
             <thead>
               <tr>
-                <th>Nome</th>
+                <th className='nome'>Nome</th>
                 <th>Data Admissão</th>
                 <th></th>
               </tr>
@@ -115,7 +115,7 @@ export function Emissor() {
                 <tbody key={emissor.id}>
                   <tr>
                     <td className="nome">{emissor.nome}</td>
-                    <td className="setor">
+                    <td className="admissao">
                       {format(new Date(emissor.dataAdmissao), 'dd/MM/yyyy')}
                     </td>
                     <td className="icones">

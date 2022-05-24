@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-
 import img1 from '../../assets/img1.png'
 import img2 from '../../assets/img2.png'
 import img3 from '../../assets/img3.png'
@@ -7,8 +6,6 @@ import img3 from '../../assets/img3.png'
 import './style.css'
 
 export function Inicial() {
-
-
   function openMenu() {
     document.body.classList.add('menu-expanded')
   }
@@ -222,7 +219,7 @@ export function Inicial() {
           <div className="coluna-a">
             <header>
               <h4>BOAS-VINDAS A ATLASNOW 👋</h4>
-              <h1> Sitema de Atas </h1>
+              <h1> Sistema de Atas </h1>
             </header>
 
             <div className="content">
@@ -276,7 +273,7 @@ export function Inicial() {
       <section id="services">
         <div className="wrapper">
           <header>
-            <h2>Vantagens</h2>
+            <h2 className="services">Vantagens</h2>
           </header>
           <div className="content">
             <div className="cards">

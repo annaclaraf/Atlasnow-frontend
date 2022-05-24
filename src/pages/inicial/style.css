@@ -5,10 +5,10 @@
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
   --box-background: hsl(39, 100%, 97%);
-  /*brand-beige*/
+
   --background-color: #1a83ff;
   --brand-green-light-02: hsl(calc(var(--hue) + 10), 14%, 97%);
-  /* brand-light*/
+
   --navi-height: 7.2rem;
   --Button-animation: #1a83ff;
 
@@ -216,7 +216,7 @@ body.menu-expanded .menu {
 }
 
 .menu .button:hover {
-  background-color: gray;
+  background-color: var(--background-color);
   color: white;
   filter: brightness(1.2);
 }
@@ -244,7 +244,7 @@ body.menu-expanded button path {
 #home::before {
   content: '';
   width: 100vw;
-  height: calc(70% + var(--navi-height));
+  height: calc(110% + var(--navi-height));
   background-color: #dcdcdc;
   display: block;
   position: absolute;
@@ -522,7 +522,7 @@ body.menu-expanded button path {
 
   /* #####-HOME-##### */
   #home::before {
-    height: calc(95% - var(--navi-height));
+    height: calc(110% - var(--navi-height));
   }
 
   #home {
@@ -569,7 +569,7 @@ body.menu-expanded button path {
   }
 
   /* #####-SERVICE-##### */
-  #services h2 {
+  #services h2.services {
     width: 47rem;
     margin-inline: auto;
   }

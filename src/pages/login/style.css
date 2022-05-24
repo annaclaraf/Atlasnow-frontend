@@ -92,3 +92,6 @@ form input[type='submit'] {
 #logo-login {
   margin-top: 2rem;
 }
+input {
+  background-color: #fffff0;
+}
