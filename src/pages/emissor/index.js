@@ -15,6 +15,7 @@ export function Emissor() {
 
   const [id, setId] = useState('')
   const [emissor, setEmissor] = useState([])
+  const [load, setLoad] = useState([])
 
   useEffect(() => {
     async function loadEmissores() {
@@ -26,7 +27,7 @@ export function Emissor() {
       setEmissor(response.data)
     }
     loadEmissores()
-  }, [])
+  }, [load])
 
   async function handleSearch(event) {
     event.preventDefault()
@@ -41,7 +42,8 @@ export function Emissor() {
 
       setId('')
     } catch (err) {
-      console.log(err)
+      alert(err.response.data.error)
+      setId('')
     }
   }
 
@@ -60,13 +62,13 @@ export function Emissor() {
     navigate('/emissor/editar')
   }
   async function Excluir(id) {
-    await api.delete(`/emissores/${id}`, {
+    const response = await api.delete(`/emissores/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
     alert('O emissor foi excluído!')
-    navigate('/emissor')
+    setLoad(response)
   }
 
   return (

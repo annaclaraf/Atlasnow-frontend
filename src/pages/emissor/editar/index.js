@@ -33,6 +33,10 @@ export function EmissorEditar() {
   async function handleUpdate(event) {
     event.preventDefault()
 
+    if(!dataAdmissao) {
+      navigate('/emissor')
+      return
+    }
     try {
       await api.put(
         `/emissores/${id}`,
@@ -50,7 +54,7 @@ export function EmissorEditar() {
 
       navigate('/emissor')
     } catch (err) {
-      console.log(err)
+        alert(err.response.data.error)
     }
   }
 

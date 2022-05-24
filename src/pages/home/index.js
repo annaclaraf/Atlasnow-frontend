@@ -1,8 +1,38 @@
+import { useEffect, useState } from 'react'
 import { Sidebar } from '../../components/Sidebar/index'
+
+import { api } from '../../services/api'
 
 import './style.css'
 
 export function Home() {
+    const token = localStorage.getItem('token');
+    const [funcionario, setFuncionario] = useState([]);
+    const [emissor, setEmissor] = useState([]);
+
+
+    useEffect(() => {
+        async function loadFunc() {
+            const response = await api.get('/funcionarios', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setFuncionario(response.data)
+        }
+
+        async function loadEmi() {
+            const response = await api.get('/emissores', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setEmissor(response.data)
+        }
+
+        loadFunc()
+        loadEmi()
+    }, []);
 
     return (
         <main>
@@ -37,6 +67,16 @@ export function Home() {
                         fill="white"
                     />
                 </svg>
+
+                <div className="dashboard">
+                    <div className="card-box">
+                        {funcionario.length} <br/> Funcionários <br/> Cadastrados
+                    </div>
+
+                    <div className="card-box">
+                        {emissor.length} <br/> Emissores <br/> Cadastrados
+                    </div>
+                </div>
             </section>
         </main>
     );

@@ -64,7 +64,6 @@ export function Login() {
                     <input
                         type="email"
                         name="email"
-                        id="email"
                         className="infos"
                         placeholder="Digite seu e-mail"
                         autoComplete="off"
@@ -74,7 +73,6 @@ export function Login() {
                     <input
                         type="password"
                         name="password"
-                        id="password"
                         className="infos"
                         placeholder="Digite a sua senha"
                         onChange={event => setPassword(event.target.value)}

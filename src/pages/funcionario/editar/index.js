@@ -38,7 +38,7 @@ export function FuncionarioEditar() {
     event.preventDefault()
 
     try {
-      const response = await api.put(
+      await api.put(
         `/funcionarios/${cpf}`,
         {
           nome,
@@ -181,6 +181,7 @@ export function FuncionarioEditar() {
                       id="setor"
                       type="text"
                       placeholder={func.setor}
+                      value={setor}
                       onChange={event => setSetor(event.target.value)}
                     />
                   </div>

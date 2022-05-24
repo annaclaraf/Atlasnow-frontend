@@ -57,7 +57,7 @@ export function Inicial() {
                             <li><a onClick={closeMenu} href="#contact">Contatos</a></li>
                         </ul>
 
-                        <Link to="/login" onClick={openMenu} className="button">Faça o seu login</Link>
+                        <Link to="/login" className="button">Faça o seu login</Link>
                         <ul className="social-mideas">
                             <li>
                                 <a target="_blank" href="https://www.facebook.com">
