@@ -17,7 +17,7 @@ main section {
 main header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -26,7 +26,7 @@ header #buscar {
   justify-content: center;
   background-color: white;
   display: flex;
-
+  padding: 0 10px;
   border-radius: 8px;
   height: 35px;
 }
@@ -40,7 +40,7 @@ header div input {
 header div button {
   border: none;
   background-color: transparent;
-
+  padding: 0;
   cursor: pointer;
 }
 div #customers {
@@ -96,6 +96,7 @@ div #customers caption {
 }
 
 .icon {
+  padding-right: 40px;
   border-right: 10px;
   text-align: center;
 

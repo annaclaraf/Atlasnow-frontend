@@ -103,12 +103,15 @@ button.voltar {
   bottom: 0;
   background-color: transparent;
   border: none;
+  transition: background 0.5s;
 }
 button.voltar svg {
   color: #060b26;
   font-size: 40px;
   cursor: pointer;
+  transition: color 0.5s;
 }
+
 button.voltar svg:hover {
   color: #1a83ff;
 }

@@ -20,5 +20,11 @@ export const SidebarData = [
     path: '/emissor',
     icon: <FaIcons.FaUsers />,
     cName: 'nav-text'
+  },
+  {
+    title: 'Setor',
+    path: '/setor',
+    icon: <FaIcons.FaRegListAlt />,
+    cName: 'nav-text'
   }
 ]

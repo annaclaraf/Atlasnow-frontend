@@ -11,9 +11,28 @@ export function EmissorCadastro() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  const [CPF, setCPF] = useState('')
+  const [nome, setNome] = useState('')
+  const [CPF, setFuncionario] = useState([])
   const [dataAdmissao, setDataAdmissao] = useState('')
   const [dataFimAdmissao, setDataFimAdmissao] = useState(null)
+
+  async function handleSearch(event) {
+    event.preventDefault()
+
+    try {
+      const response = await api.get(`/funcionarios/${nome}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setFuncionario(response.data)
+
+      setNome('')
+    } catch (err) {
+      alert(err.response.data.error)
+      setNome('')
+    }
+  }
 
   async function handleCreate(event) {
     event.preventDefault()
@@ -40,7 +59,7 @@ export function EmissorCadastro() {
   }
 
   async function voltar() {
-    navigate('/home')
+    navigate('/emissor')
   }
 
   return (
@@ -57,14 +76,15 @@ export function EmissorCadastro() {
           <form>
             <div className="align-1">
               <div className="cpf">
-                <p>CPF:</p>
                 <input
-                  id="CPF"
                   type="text"
-                  placeholder="CPF:"
-                  onChange={event => setCPF(event.target.value)}
-                  required
+                  placeholder="Buscar Funcionário"
+                  onChange={event => setNome(event.target.value)}
+                  value={nome}
                 />
+                <button onClick={handleSearch}>
+                  <FaIcons.FaSearch />
+                </button>
               </div>
             </div>
 
@@ -97,7 +117,7 @@ export function EmissorCadastro() {
 
         <footer>
           <button className="voltar" onClick={voltar}>
-          <FaIcons.FaRegArrowAltCircleLeft />
+            <FaIcons.FaRegArrowAltCircleLeft />
           </button>
         </footer>
       </section>

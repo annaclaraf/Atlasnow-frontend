@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { format } from 'date-fns'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../services/api'
 
@@ -8,42 +7,41 @@ import { Sidebar } from '../../components/Sidebar/index'
 
 import './style.css'
 
-export function Emissor() {
+export function Setor() {
   const token = localStorage.getItem('token')
-
   const navigate = useNavigate()
 
-  const [id, setId] = useState('')
-  const [emissor, setEmissor] = useState([])
+  const [CPF, setCPF] = useState('')
+  const [funcionario, setFuncionario] = useState([])
   const [load, setLoad] = useState([])
 
   useEffect(() => {
-    async function loadEmissores() {
-      const response = await api.get('/emissores', {
+    async function loadFuncionarios() {
+      const response = await api.get('/funcionarios', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      setEmissor(response.data)
+      setFuncionario(response.data)
     }
-    loadEmissores()
+    loadFuncionarios()
   }, [load])
 
   async function handleSearch(event) {
     event.preventDefault()
 
     try {
-      const response = await api.get(`/emissores/${id}`, {
+      const response = await api.get(`/funcionarios/${CPF}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      setEmissor(response.data)
+      setFuncionario(response.data)
 
-      setId('')
+      setCPF('')
     } catch (err) {
       alert(err.response.data.error)
-      setId('')
+      setCPF('')
     }
   }
 
@@ -51,23 +49,23 @@ export function Emissor() {
     navigate('/home')
   }
   async function paginaCadastro() {
-    navigate('/emissor/cadastrar')
+    navigate('/setor/cadastrar')
   }
-  async function Visualizar(id) {
-    await localStorage.setItem('id', id)
-    navigate('/emissor/view')
+  async function Visualizar(cpf) {
+    await localStorage.setItem('cpf', cpf)
+    navigate('/funcionarios/view')
   }
-  async function Editar(id) {
-    await localStorage.setItem('id', id)
-    navigate('/emissor/editar')
+  async function Editar(cpf) {
+    await localStorage.setItem('cpf', cpf)
+    navigate('/setor/editar')
   }
-  async function Excluir(id) {
-    const response = await api.delete(`/emissores/${id}`, {
+  async function Excluir(cpf) {
+    const response = await api.delete(`/funcionarios/${cpf}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    alert('O emissor foi excluído!')
+    alert('O funcionario foi excluído!')
     setLoad(response)
   }
 
@@ -80,62 +78,57 @@ export function Emissor() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
-
         <header id="busca">
-          <h2>EMISSORES</h2>
+          <h2>SETORES</h2>
 
           <div id="buscar">
             <input
               type="text"
-              placeholder="Buscar Emissor"
-              onChange={event => setId(event.target.value)}
-              value={id}
+              placeholder="Buscar Setor"
+              onChange={event => setCPF(event.target.value)}
+              value={CPF}
             />
             <button onClick={handleSearch}>
               <FaIcons.FaSearch />
             </button>
           </div>
+          <button className="button" onClick={paginaCadastro}>
+            Cadastrar Setor
+          </button>
         </header>
 
         <div>
           <table id="customers">
-            <caption>Lista de Emissores:</caption>
+            <caption>Lista de Setores:</caption>
             <thead>
               <tr>
-                <th className="nome">Nome</th>
-                <th>Data Admissão</th>
+                <th>Setor</th>
                 <th></th>
               </tr>
             </thead>
-            {emissor.map(emissor => {
+            {funcionario.map(func => {
               return (
-                <tbody key={emissor.id}>
+                <tbody key={func.CPF}>
                   <tr>
-                    <td className="nome">{emissor.nome}</td>
-                    <td className="admissao">
-                      {format(new Date(emissor.dataAdmissao), 'dd/MM/yyyy')}
-                    </td>
+                    <td className="nome">{func.nome}</td>
+
                     <td className="icones">
                       <button
+                        onClick={() => Visualizar(func.CPF)}
                         className="icon"
-                        onClick={() => Visualizar(emissor.id)}
                       >
-                        {' '}
                         <FaIcons.FaRegEye />
                         <br></br>
                         Visualizar
                       </button>
-                      <button
-                        className="icon"
-                        onClick={() => Editar(emissor.id)}
-                      >
+                      <button onClick={() => Editar(func.CPF)} className="icon">
                         <FaIcons.FaUserEdit />
                         <br></br>
                         Editar
                       </button>
                       <button
+                        onClick={() => Excluir(func.CPF)}
                         className="icon-delete"
-                        onClick={() => Excluir(emissor.id)}
                       >
                         <FaIcons.FaUserTimes />
                         <br></br>

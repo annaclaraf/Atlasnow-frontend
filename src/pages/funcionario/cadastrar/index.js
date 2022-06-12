@@ -173,13 +173,9 @@ export function FuncionarioCadastro() {
               </div>
               <div className="setor">
                 <p>Setor:</p>
-                <input
-                  id="setor"
-                  type="text"
-                  placeholder="Setor:"
-                  onChange={event => setSetor(event.target.value)}
-                  required
-                />
+                <select id="setor">
+                  <option value=""></option>
+                </select>
               </div>
             </div>
 

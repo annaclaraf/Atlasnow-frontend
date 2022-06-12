@@ -5,13 +5,15 @@ import { Login } from './pages/login/index'
 import { Home } from './pages/home/index'
 import { Funcionario } from './pages/funcionario/index'
 import { FuncionarioCadastro } from './pages/funcionario/cadastrar/index'
-import { FuncionarioEditar } from './pages/funcionario/editar/index'//
+import { FuncionarioEditar } from './pages/funcionario/editar/index' //
 import { FuncionarioView } from './pages/funcionario/view/index'
 import { Emissor } from './pages/emissor/index'
 import { EmissorEditar } from './pages/emissor/editar/index'
 import { EmissorView } from './pages/emissor/view/index'
 import { EmissorCadastro } from './pages/emissor/cadastrar/index'
-
+import { Setor } from './pages/setor/index'
+import { SetorCadastro } from './pages/setor/cadastrar/index'
+import { SetorEditar } from './pages/setor/editar/index'
 
 import './App.css'
 
@@ -23,16 +25,22 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/funcionarios" element={<Funcionario />} />
-        <Route path="/funcionarios/cadastro" element={<FuncionarioCadastro />} />
+        <Route
+          path="/funcionarios/cadastro"
+          element={<FuncionarioCadastro />}
+        />
         <Route path="/funcionarios/editar" element={<FuncionarioEditar />} />
-        <Route path="/funcionarios/view" element={<FuncionarioView />} />        
+        <Route path="/funcionarios/view" element={<FuncionarioView />} />
         <Route path="/emissor" element={<Emissor />} />
         <Route path="/emissor/editar" element={<EmissorEditar />} />
         <Route path="/emissor/view" element={<EmissorView />} />
         <Route path="/emissor/cadastrar" element={<EmissorCadastro />} />
+        <Route path="/setor" element={<Setor />} />
+        <Route path="/setor/cadastrar" element={<SetorCadastro />} />
+        <Route path="/setor/editar" element={<SetorEditar />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
