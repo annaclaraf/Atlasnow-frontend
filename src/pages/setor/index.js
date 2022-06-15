@@ -11,37 +11,38 @@ export function Setor() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  const [CPF, setCPF] = useState('')
-  const [funcionario, setFuncionario] = useState([])
+  const [Nome, setNome] = useState('')
+  const [setor, setSetor] = useState([])
   const [load, setLoad] = useState([])
 
   useEffect(() => {
-    async function loadFuncionarios() {
-      const response = await api.get('/funcionarios', {
+    async function loadSetor() {
+      const response = await api.get('/setor', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      setFuncionario(response.data)
+      setSetor(response.data)
     }
-    loadFuncionarios()
+    loadSetor()
   }, [load])
 
   async function handleSearch(event) {
+    
     event.preventDefault()
 
     try {
-      const response = await api.get(`/funcionarios/${CPF}`, {
+      const response = await api.get(`/setor/${Nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      setFuncionario(response.data)
+      setSetor(response.data)
 
-      setCPF('')
+      setNome('')
     } catch (err) {
       alert(err.response.data.error)
-      setCPF('')
+      setNome('')
     }
   }
 
@@ -51,21 +52,18 @@ export function Setor() {
   async function paginaCadastro() {
     navigate('/setor/cadastrar')
   }
-  async function Visualizar(cpf) {
-    await localStorage.setItem('cpf', cpf)
-    navigate('/funcionarios/view')
-  }
-  async function Editar(cpf) {
-    await localStorage.setItem('cpf', cpf)
+  async function Editar(nome,id) {
+    await localStorage.setItem('nome', nome)
+    await localStorage.setItem('id', id)
     navigate('/setor/editar')
   }
-  async function Excluir(cpf) {
-    const response = await api.delete(`/funcionarios/${cpf}`, {
+  async function Excluir(id) {
+    const response = await api.delete(`/setor/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    alert('O funcionario foi excluído!')
+    alert('O Setor foi excluído!')
     setLoad(response)
   }
 
@@ -85,8 +83,8 @@ export function Setor() {
             <input
               type="text"
               placeholder="Buscar Setor"
-              onChange={event => setCPF(event.target.value)}
-              value={CPF}
+              onChange={event => setNome(event.target.value)}
+              value={Nome}
             />
             <button onClick={handleSearch}>
               <FaIcons.FaSearch />
@@ -106,28 +104,23 @@ export function Setor() {
                 <th></th>
               </tr>
             </thead>
-            {funcionario.map(func => {
+            {setor.map(func => {
               return (
-                <tbody key={func.CPF}>
+                <tbody key={func.id}>
                   <tr>
                     <td className="nome">{func.nome}</td>
 
                     <td className="icones">
                       <button
-                        onClick={() => Visualizar(func.CPF)}
+                        onClick={() => Editar(func.nome,func.id)}
                         className="icon"
                       >
-                        <FaIcons.FaRegEye />
-                        <br></br>
-                        Visualizar
-                      </button>
-                      <button onClick={() => Editar(func.CPF)} className="icon">
                         <FaIcons.FaUserEdit />
                         <br></br>
                         Editar
                       </button>
                       <button
-                        onClick={() => Excluir(func.CPF)}
+                        onClick={() => Excluir(func.id)}
                         className="icon-delete"
                       >
                         <FaIcons.FaUserTimes />

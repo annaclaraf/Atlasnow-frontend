@@ -14,6 +14,7 @@ export function FuncionarioCadastro() {
   const [email, setEmail] = useState('')
   const [telefone, setTelefone] = useState('')
   const [setor, setSetor] = useState('')
+  const [setores, setSetores] = useState([])
   const [rua, setRua] = useState('')
   const [CEP, setCEP] = useState('')
   const [numero, setNumero] = useState('')
@@ -22,9 +23,21 @@ export function FuncionarioCadastro() {
 
   async function handleCreate(event) {
     event.preventDefault()
-
+    console.log(setor)
+    console.log(
+      CPF,
+      nome,
+      email,
+      telefone,
+      setor,
+      rua,
+      CEP,
+      numero,
+      cidade,
+      estado
+    )
     try {
-      const response = await api.post(
+      await api.post(
         '/funcionarios',
         {
           CPF,
@@ -50,6 +63,17 @@ export function FuncionarioCadastro() {
       alert(err.response.data.error)
     }
   }
+
+  async function loadSetores() {
+    const response = await api.get('/setor', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    setSetores(response.data)
+  }
+  loadSetores()
 
   async function paginaFuncionario() {
     navigate('/funcionarios')
@@ -94,7 +118,7 @@ export function FuncionarioCadastro() {
                 <p>CPF:</p>
                 <input
                   id="CPF"
-                  type="text"
+                  type="number"
                   placeholder="CPF:"
                   onChange={event => setCPF(event.target.value)}
                   required
@@ -106,7 +130,7 @@ export function FuncionarioCadastro() {
 
                 <input
                   id="telefone"
-                  type="text"
+                  type="number"
                   placeholder="Telefone:"
                   onChange={event => setTelefone(event.target.value)}
                   required
@@ -130,7 +154,7 @@ export function FuncionarioCadastro() {
                 <p>CEP:</p>
                 <input
                   id="CEP"
-                  type="text"
+                  type="number"
                   placeholder="CEP:"
                   onChange={event => setCEP(event.target.value)}
                   required
@@ -171,14 +195,25 @@ export function FuncionarioCadastro() {
                   required
                 />
               </div>
-              <div className="setor">
-                <p>Setor:</p>
-                <select id="setor">
-                  <option value=""></option>
-                </select>
+              <div className="align-1">
+                <div className="setor">
+                  <p>Setor:</p>
+                  <select
+                    id="setor"
+                    onChange={event => setSetor(event.target.value)}
+                  >
+                    <option value=""></option>
+                    {setores.map(func => {
+                      return (
+                        <option key={func.id} value={func.nome}>
+                          {func.nome}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </div>
               </div>
             </div>
-
             <button className="button" onClick={handleCreate}>
               Cadastrar
             </button>

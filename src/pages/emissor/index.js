@@ -95,6 +95,10 @@ export function Emissor() {
               <FaIcons.FaSearch />
             </button>
           </div>
+
+          <button className="button" onClick={paginaCadastro}>
+            Cadastrar Emissor
+          </button>
         </header>
 
         <div>

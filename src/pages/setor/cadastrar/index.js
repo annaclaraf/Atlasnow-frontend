@@ -9,9 +9,7 @@ export function SetorCadastro() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  
   const [nome, setNome] = useState('')
-  
 
   async function handleCreate(event) {
     event.preventDefault()
@@ -54,7 +52,7 @@ export function SetorCadastro() {
               <input
                 id="nome"
                 type="text"
-                placeholder="Nome Completo:"
+                placeholder="Coloque aqui o nome do Setor"
                 onChange={event => setNome(event.target.value)}
                 required
               />

@@ -8,16 +8,17 @@ import { Sidebar } from '../../../components/Sidebar/index'
 
 export function SetorEditar() {
   const token = localStorage.getItem('token')
-  const id = localStorage.getItem('nome')
+  const id = localStorage.getItem('id')
+  const Nome = localStorage.getItem('nome')
   const navigate = useNavigate()
 
   const [nome, setNome] = useState()
- 
+
   const [setor, setSetor] = useState([])
 
   useEffect(() => {
     async function loadSetor() {
-      const response = await api.get(`/setor/${id}`, {
+      const response = await api.get(`/setor/${Nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -29,13 +30,15 @@ export function SetorEditar() {
 
   async function handleUpdate(event) {
     event.preventDefault()
-
+    if(!nome){
+      navigate('/setor')
+      return
+    }
     try {
       await api.put(
         `/setor/${id}`,
         {
           nome
-          
         },
         {
           headers: {
@@ -67,7 +70,7 @@ export function SetorEditar() {
           <h3>Altere as informações do Setor</h3>
           {setor.map(func => {
             return (
-              <form key={func.CPF}>
+              <form key={func.id}>
                 <div className="nome">
                   <p>NOME DO SETOR:</p>
                   <input
@@ -78,7 +81,7 @@ export function SetorEditar() {
                     onChange={event => setNome(event.target.value)}
                   />
                 </div>
-              
+
                 <button onClick={handleUpdate} className="button">
                   Confirmar Edição
                 </button>
@@ -88,7 +91,7 @@ export function SetorEditar() {
         </div>
         <footer>
           <button className="voltar" onClick={voltar}>
-          <FaIcons.FaRegArrowAltCircleLeft />
+            <FaIcons.FaRegArrowAltCircleLeft />
           </button>
         </footer>
       </section>
