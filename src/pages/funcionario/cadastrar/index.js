@@ -23,19 +23,6 @@ export function FuncionarioCadastro() {
 
   async function handleCreate(event) {
     event.preventDefault()
-    console.log(setor)
-    console.log(
-      CPF,
-      nome,
-      email,
-      telefone,
-      setor,
-      rua,
-      CEP,
-      numero,
-      cidade,
-      estado
-    )
     try {
       await api.post(
         '/funcionarios',

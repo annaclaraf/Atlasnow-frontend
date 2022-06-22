@@ -33,7 +33,7 @@ export function EmissorEditar() {
   async function handleUpdate(event) {
     event.preventDefault()
 
-    if(!dataAdmissao) {
+    if(!dataAdmissao && !dataFimAdmissao && !CPF) {
       navigate('/emissor')
       return
     }

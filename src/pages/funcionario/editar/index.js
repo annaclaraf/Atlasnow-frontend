@@ -15,6 +15,7 @@ export function FuncionarioEditar() {
   const [email, setEmail] = useState()
   const [telefone, setTelefone] = useState()
   const [setor, setSetor] = useState()
+  const [setores, setSetores] = useState([])
   const [rua, setRua] = useState()
   const [CEP, setCEP] = useState()
   const [numero, setNumero] = useState()
@@ -33,6 +34,17 @@ export function FuncionarioEditar() {
     }
     loadFuncionarios()
   }, [])
+
+  async function loadSetores() {
+    const response = await api.get('/setor', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    setSetores(response.data)
+  }
+  loadSetores()
 
   async function handleUpdate(event) {
     event.preventDefault()
@@ -177,13 +189,19 @@ export function FuncionarioEditar() {
                   </div>
                   <div className="setor">
                     <p>Setor:</p>
-                    <input
+                    <select
                       id="setor"
-                      type="text"
-                      placeholder={func.setor}
-                      value={setor}
                       onChange={event => setSetor(event.target.value)}
-                    />
+                    >
+                      <option value=""></option>
+                      {setores.map(set => {
+                        return (
+                          <option key={set.id} value={set.nome} selected = {set.nome == func.setor ? true : false}>
+                            {set.nome}
+                          </option>
+                        )
+                      })}
+                    </select>
                   </div>
                 </div>
 
@@ -196,7 +214,7 @@ export function FuncionarioEditar() {
         </div>
         <footer>
           <button className="voltar" onClick={paginaFuncionario}>
-          <FaIcons.FaRegArrowAltCircleLeft />
+            <FaIcons.FaRegArrowAltCircleLeft />
           </button>
         </footer>
       </section>
