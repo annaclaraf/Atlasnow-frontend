@@ -1,0 +1,157 @@
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
+import * as FaIcons from 'react-icons/fa'
+import { api } from '../../services/api'
+
+import { Sidebar } from '../../components/Sidebar/index'
+
+export function Ata() {
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
+
+  const [palavrasChave, setPalavrasChave] = useState('')
+  const [ata, setAta] = useState([])
+  const [load, setLoad] = useState([])
+
+  useEffect(() => {
+    async function loadAtas() {
+      const response = await api.get('/atas', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      setAta(response.data)
+    }
+    loadAtas()
+  }, [load])
+
+  async function handleSearch(event) {
+    event.preventDefault()
+    
+    if(palavrasChave == '') {return}
+    try {
+      const response = await api.get(`/atas/palavrasChave/${palavrasChave}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setAta(response.data)
+
+      setPalavrasChave('')
+    } catch (err) {
+      alert(err.response.data.error)
+      setPalavrasChave('')
+    }
+  }
+
+
+  async function paginaInicial() {
+    navigate('/home')
+  }
+  async function paginaCadastro() {
+    navigate('/atas/cadastrar')
+  }
+
+  async function Excluir(id) {
+    if(window.confirm("Tem certeza que deseja excluir essa ata?")) {
+      const response = await api.delete(`/atas/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      alert('A ata foi excluída!')
+      setLoad(response)
+    } 
+  }
+
+  async function Editar(id) {
+    await localStorage.setItem('id', id)
+    navigate('/atas/editar')
+  }
+
+  return (
+    <main>
+      <Sidebar />
+
+      <section>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <header>
+          <h2>ATAS</h2>
+
+          <div id="buscar">
+            <input
+              type="type"
+              placeholder="Buscar Ata"
+              onChange={event => setPalavrasChave(event.target.value)}
+              value={palavrasChave}
+            />
+            <button onClick={handleSearch}>
+            <FaIcons.FaSearch />
+            </button>
+            <button onClick={setLoad}>
+            <FaIcons.FaTimes />
+            </button>
+          </div>
+          <button className="button" onClick={paginaCadastro}>
+            Cadastrar Ata
+          </button>
+        </header>
+
+        <div>
+          <table id="customers">
+            <caption>Lista de Atas:</caption>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Data de Emissão</th>
+                <th></th>
+              </tr>
+            </thead>
+            {ata.map(a => {
+              return (
+                <tbody key={a.id}>
+                  <tr>
+                    <td className="titulo">{a.tituloReuniao}</td>
+                    <td className="dataEmissao">{format(new Date(a.dataEmissao), 'dd/MM/yyyy')}</td>
+
+                    <td className="icones">
+                      <button
+                        className="icon"
+                      >
+                        <FaIcons.FaRegEye />
+                        <br></br>
+                        Visualizar
+                      </button>
+                      <button onClick={() => Editar(a.id)} className="icon">
+                        <FaIcons.FaUserEdit />
+                        <br></br>
+                        Editar
+                      </button>
+                      <button
+                        onClick={() => Excluir(a.id)}
+                        className="icon-delete"
+                      >
+                        <FaIcons.FaUserTimes />
+                        <br></br>
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              )
+            })}
+          </table>
+        </div>
+        <footer>
+          <button className="voltar" onClick={paginaInicial}>
+            <FaIcons.FaRegArrowAltCircleLeft />
+          </button>
+        </footer>
+      </section>
+    </main>
+  )
+}

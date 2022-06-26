@@ -14,6 +14,10 @@ import { EmissorCadastro } from './pages/emissor/cadastrar/index'
 import { Setor } from './pages/setor/index'
 import { SetorCadastro } from './pages/setor/cadastrar/index'
 import { SetorEditar } from './pages/setor/editar/index'
+import { Ata } from './pages/ata/index'
+import { AtaCadastro } from './pages/ata/cadastrar/index'
+import { AtaEditar } from './pages/ata/editar/index'
+
 
 import './App.css'
 
@@ -38,6 +42,9 @@ function App() {
         <Route path="/setor" element={<Setor />} />
         <Route path="/setor/cadastrar" element={<SetorCadastro />} />
         <Route path="/setor/editar" element={<SetorEditar />} />
+        <Route path="/atas" element={<Ata />} />
+        <Route path="/atas/cadastrar" element={<AtaCadastro />} />
+        <Route path="/atas/editar" element={<AtaEditar />} />
       </Routes>
     </BrowserRouter>
   )

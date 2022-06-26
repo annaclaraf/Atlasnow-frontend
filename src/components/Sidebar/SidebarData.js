@@ -22,9 +22,16 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Setor',
+    title: 'Setores',
     path: '/setor',
     icon: <FaIcons.FaRegListAlt />,
     cName: 'nav-text'
+  },
+  {
+    title: 'Atas',
+    path: '/atas',
+    icon: <FaIcons.FaRegFileAlt />,
+    cName: 'nav-text'
   }
+  
 ]
