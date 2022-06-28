@@ -5,20 +5,25 @@ main section {
     width: 90%;
 }
 
-main div.dashboard {
-    margin-top: 2rem;
-    display: flex;
+.dashboard {
+    margin-top: 10rem;
     width: 80%;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin-inline: auto;
     gap: 2rem;
 }
 
 main div.dashboard .card-box {
+    
     background-color: rgb(238, 236, 236);
     width: 200px;
-    padding: 2rem;
-    border-radius: 8px;
+    padding: 2rem; 
+    border: 1px solid black; 
+    border-radius: 20px;
+    background: #e0e0e0;
+    box-shadow:  12px 12px 24px #a4a4a4,
+    -12px -12px 24px #ffffff;
 }
 
 main div.dashboard .card-box h3 {

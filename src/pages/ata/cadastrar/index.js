@@ -4,6 +4,8 @@ import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
 import { Sidebar } from '../../../components/Sidebar/index'
 
+import './style.css'
+
 export function AtaCadastro() {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
@@ -70,15 +72,15 @@ export function AtaCadastro() {
                     <h2>ATAS</h2>
                 </header>
 
-                <div className="wrapper-cadastro">
+                <div className="wrapper-cadastro-ata">
                     <h3>Preencha com as informações da Ata</h3>
                     <form>
                         <div className="titulo">
-                            <p>Titulo:</p>
+                            <p>Título:</p>
                             <input
                                 id="titulo"
                                 type="text"
-                                placeholder="Título da Reunião:"
+                                placeholder="Título da Reunião"
                                 onChange={event => setTituloReuniao(event.target.value)}
                                 required
                             />
@@ -90,7 +92,7 @@ export function AtaCadastro() {
                                 <input
                                     id="dataInicio"
                                     type="datetime-local"
-                                    placeholder="Data Início:"
+                                    placeholder="Data de Início"
                                     onChange={event => setDataInicio(event.target.value)}
                                     required
                                 />
@@ -115,8 +117,19 @@ export function AtaCadastro() {
                                 <input
                                     id="pauta"
                                     type="text"
-                                    placeholder="Pauta:"
+                                    placeholder="Digite aqui a pauta da reunião"
                                     onChange={event => setPauta(event.target.value)}
+                                    required
+                                />
+                            </div>
+                            
+                            <div className="descricao">
+                                <p>Descrição:</p>
+                                <input
+                                    id="descricao"
+                                    type="text"
+                                    placeholder="Digite aqui a descrição da Reunião"
+                                    onChange={event => setDescricao(event.target.value)}
                                     required
                                 />
                             </div>
@@ -126,7 +139,7 @@ export function AtaCadastro() {
                                     id="setor"
                                     onChange={event => setSetor(event.target.value)}
                                 >
-                                    <option value=""></option>
+                                    <option value="">-Selecione-</option>
                                     {setores.map(func => {
                                         return (
                                             <option key={func.id} value={func.nome}>
@@ -135,19 +148,38 @@ export function AtaCadastro() {
                                         )
                                     })}
                                 </select>
-                            </div>
-                            <div className="descricao">
-                                <p>Descrição:</p>
+                            </div>  
+                           
+                        </div>
+                        
+                        <div className="align-3">
+                            <div className='participantes'>
+                                <p>Participantes</p>
                                 <input
-                                    id="descricao"
+                                    id="participantes"
                                     type="text"
-                                    placeholder="Descrição:"
+                                    placeholder="Digite aqui o nome do fúncionário"
                                     onChange={event => setDescricao(event.target.value)}
                                     required
                                 />
+
+                            </div>
+                            
+                            <div className="ata">
+                                <p>Ata:</p>
+
+                                <textarea
+                                    id="ata"
+                                    placeholder="Digite aqui as informções tratadas da Reunião"
+                                    onChange={event => setAta(event.target.value)}
+                                  
+                                    required
+                                >
+
+                                </textarea>
                             </div>
                             <div className="palavrasChave">
-                                <p>Palavras-Chave</p>
+                                <p>Palavras-Chave:</p>
 
                                 <input
                                     id="palavrasChave"
@@ -156,22 +188,6 @@ export function AtaCadastro() {
                                     onChange={event => setPalavrasChave(event.target.value)}
                                     required
                                 />
-                            </div>
-                        </div>
-                        <div className="align-3">
-                            <div className="ata">
-                                <p>Ata:</p>
-
-                                <textarea
-                                    id="ata"
-                                    placeholder="Ata:"
-                                    onChange={event => setAta(event.target.value)}
-                                    rows="10"
-                                    cols="50"
-                                    required
-                                >
-
-                                </textarea>
                             </div>
                         </div>
                         <button className="button" onClick={handleCreate}>

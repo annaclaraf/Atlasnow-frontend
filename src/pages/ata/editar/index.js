@@ -5,6 +5,8 @@ import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
 import { Sidebar } from '../../../components/Sidebar/index'
 
+import './style.css'
+
 export function AtaEditar() {
     const token = localStorage.getItem('token')
     const id = localStorage.getItem('id')

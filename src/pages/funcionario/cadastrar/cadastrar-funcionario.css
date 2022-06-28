@@ -1,0 +1,129 @@
+
+.cadastro h2 {
+  padding-bottom: 5rem;
+}
+.wrapper-cadastro-funcionario {
+  margin-inline: auto;
+  align-items: center;
+  width: 50%;
+  border-radius: 31px;
+  border: 1px double black;
+  background: #e0e0e0;
+  box-shadow:   50px 50px 100px #808080,
+  -50px -50px 100px #ffffff;
+  
+}
+.wrapper-cadastro-funcionario h3 {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+.wrapper-cadastro-funcionario #nome {
+  width: 40rem;
+  padding-left: 10px;
+}
+
+.wrapper-cadastro-funcionario p 
+{
+  padding-top: 10px;
+  text-align: left;
+}
+form {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+input{
+background-color: transparent;}
+input#email,
+input#cidade,
+input#rua {
+  width: 200px;
+}
+
+.wrapper-cadastro-funcionario .align-1,.wrapper-cadastro-funcionario .align-2,.wrapper-cadastro-funcionario .align-3{
+  
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.wrapper-cadastro-funcionario .align-3{
+  padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+   
+}
+.numero
+{
+padding-left: 41px;
+}
+.setor-funcionario{
+  padding-left: 41px;
+
+}
+
+h4 {
+  text-align: left;
+  padding-top: 4px;
+  color: gray;
+}
+.wrapper-cadastro-funcionario input {
+  padding: 5px;
+  width: 15rem;
+  border: 2px solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.wrapper-cadastro-funcionario input:hover {
+  color: #1a83ff;
+}
+.wrapper-cadastro-funcionario .button {
+  margin-inline: auto;
+  background-color: #060b26;
+}
+.wrapper-cadastro-funcionario .button:hover {
+  background-color: rgb(6, 240, 6);
+}
+
+.cadastro footer {
+  background-color: transparent;
+}
+.cadastro footer.button {
+  display: flex;
+  justify-content: flex-start;
+  border-left: 10px;
+}
+.wrapper-cadastro-funcionario {
+  border-radius: 4rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.wrapper-cadastro button.button {
+  background-color: #060b26;
+  cursor: pointer;
+  
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  padding-left: 10px;
+ 
+}
+
+.wrapper-cadastro-funcionario button.button {
+  margin-top: 40px;
+  border-bottom: 2px solid #ffffff;
+}
+
+select {
+  width: 100px;
+  padding: 5px;
+  background-color: transparent;
+ 
+}

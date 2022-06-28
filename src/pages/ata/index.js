@@ -5,6 +5,7 @@ import * as FaIcons from 'react-icons/fa'
 import { api } from '../../services/api'
 
 import { Sidebar } from '../../components/Sidebar/index'
+import './style.css'
 
 export function Ata() {
   const token = localStorage.getItem('token')
@@ -79,7 +80,7 @@ export function Ata() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
-        <header>
+        <header id='busca'>
           <h2>ATAS</h2>
 
           <div id="buscar">
@@ -92,9 +93,8 @@ export function Ata() {
             <button onClick={handleSearch}>
             <FaIcons.FaSearch />
             </button>
-            <button onClick={setLoad}>
-            <FaIcons.FaTimes />
-            </button>
+            
+           
           </div>
           <button className="button" onClick={paginaCadastro}>
             Cadastrar Ata

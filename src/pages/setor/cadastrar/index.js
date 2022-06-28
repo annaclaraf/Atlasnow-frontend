@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
-import './style.css'
+import './cadastro-setor.css'
 import { Sidebar } from '../../../components/Sidebar/index'
 
 export function SetorCadastro() {
@@ -47,7 +47,7 @@ export function SetorCadastro() {
         <div className="wrapper-cadastro">
           <h3>CADASTRO DE SETOR</h3>
           <form>
-            <div className="nome">
+            <div className="cadastro-setor">
               <p>NOME DO SETOR:</p>
               <input
                 id="nome"

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
 
-import './style.css'
+import './emissorcadastro.css'
 
 import { Sidebar } from '../../../components/Sidebar/index'
 
@@ -74,11 +74,13 @@ export function EmissorCadastro() {
         <div className="wrapper-cadastro">
           <h3>Preencha com as informações do Emissor</h3>
           <form>
-            <div className="align-1">
-              <div className="cpf">
+            <div className="buscar-nome">
+              <div >
+                <p>Buscar Funcionário</p>
                 <input
+                id='nome-busca'
                   type="text"
-                  placeholder="Buscar Funcionário"
+                  placeholder="Digite aqui o nome do Funcionário"
                   onChange={event => setNome(event.target.value)}
                   value={nome}
                 />

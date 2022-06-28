@@ -1,0 +1,113 @@
+.titulo{
+  text-align: left;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+input#titulo{
+  width: 50%;
+  text-align: center;
+}
+p{
+text-align: left;}
+
+
+.align-2{
+display: flex;
+justify-content: space-around;
+}
+.cadastro h2 {
+  padding-bottom: 5rem;
+}
+.wrapper-cadastro-ata {
+  margin-inline: auto;
+  align-items: center;
+  width: 70%;
+  border: 1px double black;
+  background: #e0e0e0;
+  box-shadow:   50px 50px 100px #808080,
+  -50px -50px 100px #ffffff;
+}
+.wrapper-cadastro-ata h3 {
+  padding: 10px;
+
+  border-bottom: 1px solid black;
+}
+
+
+form {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.align-1{
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+h4 {
+  text-align: left;
+  padding-top: 4px;
+  color: gray;
+}
+.wrapper-cadastro-ata input {
+  padding: 5px;
+ 
+  border: 2px solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.wrapper-cadastro-ata input:hover {
+  color: #1a83ff;
+}
+.wrapper-cadastro-ata .button {
+  margin-inline: auto;
+  background-color: #060b26;
+}
+.wrapper-cadastro-ata .button:hover {
+  background-color: rgb(6, 240, 6);
+}
+.setor {
+  padding-bottom: 50px;
+}
+.cadastro footer {
+  background-color: transparent;
+}
+.cadastro footer.button {
+  display: flex;
+  justify-content: flex-start;
+  border-left: 10px;
+}
+.wrapper-cadastro-ata {
+  border-radius: 4rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.wrapper-cadastro-ata button.button {
+  background-color: #060b26;
+  cursor: pointer;
+  margin-top: 40px;
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  padding-left: 10px;
+ 
+}
+.buscar-nome{ 
+margin-top: 20px;
+display: inline;
+}
+input#nome-busca{
+width: 80%;
+}

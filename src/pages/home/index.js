@@ -9,6 +9,8 @@ export function Home() {
     const token = localStorage.getItem('token');
     const [funcionario, setFuncionario] = useState([]);
     const [emissor, setEmissor] = useState([]);
+    const [setor, setSetor] = useState([]);
+    const [atas, setAtas] = useState([]);
 
 
     useEffect(() => {
@@ -29,9 +31,27 @@ export function Home() {
             });
             setEmissor(response.data)
         }
+        async function loadSet() {
+            const response = await api.get('/setor', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setSetor(response.data)
+        }
+        async function loadAta() {
+            const response = await api.get('/atas', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setAtas(response.data)
+        }
 
         loadFunc()
         loadEmi()
+        loadSet()
+        loadAta()
     }, []);
 
     return (
@@ -39,7 +59,7 @@ export function Home() {
             <Sidebar />
 
             <section>
-                <svg
+                <svg className='logo'
                     width="202"
                     height="64"
                     viewBox="0 0 202 64"
@@ -76,6 +96,13 @@ export function Home() {
                     <div className="card-box">
                         {emissor.length} <br/> Emissores <br/> Cadastrados
                     </div>
+                    <div className="card-box">
+                        {setor.length} <br/> Setores <br/> Cadastrados
+                    </div>
+                    <div className="card-box">
+                        {atas.length} <br/> Atas <br/> Criadas
+                    </div>
+                    
                 </div>
             </section>
         </main>

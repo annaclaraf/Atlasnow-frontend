@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
-import './style.css'
+import './cadastrar-funcionario.css'
 import { Sidebar } from '../../../components/Sidebar/index'
 
 export function FuncionarioCadastro() {
@@ -75,7 +75,7 @@ export function FuncionarioCadastro() {
           <h2>FUNCIONÁRIOS</h2>
         </header>
 
-        <div className="wrapper-cadastro">
+        <div className="wrapper-cadastro-funcionario">
           <h3>Preencha com as informações do Funcionário</h3>
           <form>
             <div className="nome">
@@ -182,14 +182,14 @@ export function FuncionarioCadastro() {
                   required
                 />
               </div>
-              <div className="align-1">
-                <div className="setor">
+              
+                <div className="setor-funcionario">
                   <p>Setor:</p>
                   <select
                     id="setor"
                     onChange={event => setSetor(event.target.value)}
                   >
-                    <option value=""></option>
+                    <option value="">-Selecione-</option>
                     {setores.map(func => {
                       return (
                         <option key={func.id} value={func.nome}>
@@ -199,7 +199,7 @@ export function FuncionarioCadastro() {
                     })}
                   </select>
                 </div>
-              </div>
+              
             </div>
             <button className="button" onClick={handleCreate}>
               Cadastrar
