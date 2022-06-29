@@ -27,7 +27,10 @@ export function Login() {
 
   return (
     <main id="login-body">
-      <div id="login-form">
+      
+      
+<div class="area" >
+<div id="login-form">
         <div id="logo-login">
           <svg
             width="202"
@@ -85,6 +88,19 @@ export function Login() {
           <input className="button" type="submit" value="Login" />
         </form>
       </div>
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
     </main>
   )
 }

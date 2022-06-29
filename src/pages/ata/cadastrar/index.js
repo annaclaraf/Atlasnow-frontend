@@ -108,19 +108,30 @@ export function AtaCadastro() {
                                     required
                                 />
                             </div>
+                            <div className="palavrasChave">
+                                <p>Palavras-Chave:</p>
+
+                                <input
+                                    id="palavrasChave"
+                                    type="text"
+                                    placeholder="Palavras-Chave:"
+                                    onChange={event => setPalavrasChave(event.target.value)}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="align-2">
                             <div className="pauta">
                                 <p>Pauta:</p>
 
-                                <input
-                                    id="pauta"
-                                    type="text"
-                                    placeholder="Digite aqui a pauta da reunião"
+                                <textarea
+                                    id="ata"
+                                    placeholder="Digite aqui as informções tratadas da Reunião"
+                                                                                                                                 
                                     onChange={event => setPauta(event.target.value)}
-                                    required
-                                />
+                                    required>
+                                </textarea>
                             </div>
                             
                             <div className="descricao">
@@ -132,6 +143,17 @@ export function AtaCadastro() {
                                     onChange={event => setDescricao(event.target.value)}
                                     required
                                 />
+                            </div>
+                            <div className='participantes'>
+                                <p>Participantes</p>
+                                <input
+                                    id="participantes"
+                                    type="text"
+                                    placeholder="Digite aqui o nome do fúncionário"
+                                    onChange={event => setDescricao(event.target.value)}
+                                    required
+                                />
+
                             </div>
                             <div className="setor">
                                 <p>Setor:</p>
@@ -153,17 +175,7 @@ export function AtaCadastro() {
                         </div>
                         
                         <div className="align-3">
-                            <div className='participantes'>
-                                <p>Participantes</p>
-                                <input
-                                    id="participantes"
-                                    type="text"
-                                    placeholder="Digite aqui o nome do fúncionário"
-                                    onChange={event => setDescricao(event.target.value)}
-                                    required
-                                />
-
-                            </div>
+                            
                             
                             <div className="ata">
                                 <p>Ata:</p>
@@ -178,17 +190,7 @@ export function AtaCadastro() {
 
                                 </textarea>
                             </div>
-                            <div className="palavrasChave">
-                                <p>Palavras-Chave:</p>
-
-                                <input
-                                    id="palavrasChave"
-                                    type="text"
-                                    placeholder="Palavras-Chave:"
-                                    onChange={event => setPalavrasChave(event.target.value)}
-                                    required
-                                />
-                            </div>
+                            
                         </div>
                         <button className="button" onClick={handleCreate}>
                             Cadastrar
