@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import { SidebarData } from './SidebarData'
 import { IconContext } from 'react-icons'
+
+import {  AuthContext } from "../../context/AuthContext";
+
 
 import './style.css'
 
@@ -11,6 +14,9 @@ export function Sidebar() {
   const [sidebar, setSidebar] = useState(false)
 
   const showSidebar = () => setSidebar(!sidebar)
+
+  const { logout } = useContext(AuthContext);
+
 
   return (
     <>
@@ -42,6 +48,13 @@ export function Sidebar() {
                 </li>
               )
             })}
+            <div className="logout">
+              <button onClick={() =>{
+                  logout();
+              }}>
+                SAIR
+              </button>
+            </div>
           </ul>
         </nav>
       </IconContext.Provider>
