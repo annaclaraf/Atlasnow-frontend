@@ -18,7 +18,7 @@ export function SetorEditar() {
 
   useEffect(() => {
     async function loadSetor() {
-      const response = await api.get(`/setor/${Nome}`, {
+      const response = await api.get(`/setor/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -30,6 +30,10 @@ export function SetorEditar() {
 
   async function handleUpdate(event) {
     event.preventDefault()
+    if (nome == '') {
+      alert("Nome não pode ficar em branco")
+      return
+  }
     if(!nome){
       navigate('/setor')
       return
@@ -77,7 +81,7 @@ export function SetorEditar() {
                     id="nome"
                     type="text"
                     placeholder={func.nome}
-                    value={nome}
+                    value={nome || nome == '' ? nome : func.nome}
                     onChange={event => setNome(event.target.value)}
                   />
                 </div>

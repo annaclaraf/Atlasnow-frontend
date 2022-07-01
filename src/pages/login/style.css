@@ -7,7 +7,7 @@
 main#login-body,
 body {
   background-color: #060b26;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 main#login-body textarea:focus,

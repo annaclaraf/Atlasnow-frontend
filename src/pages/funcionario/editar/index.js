@@ -49,6 +49,21 @@ export function FuncionarioEditar() {
   async function handleUpdate(event) {
     event.preventDefault()
 
+    if (
+      nome == '' ||
+      email == '' ||
+      telefone == '' ||
+      setor == '' ||
+      rua == '' ||
+      CEP == '' ||
+      numero == '' ||
+      cidade == '' ||
+      estado == '' 
+    ) {
+      alert("Nenhum campo pode ficar em branco")
+      return
+    }
+
     try {
       await api.put(
         `/funcionarios/${cpf}`,
@@ -100,7 +115,7 @@ export function FuncionarioEditar() {
                     id="nome"
                     type="text"
                     placeholder={func.nome}
-                    value={nome}
+                    value={nome || nome == '' ? nome : func.nome}
                     onChange={event => setNome(event.target.value)}
                   />
                 </div>
@@ -112,7 +127,7 @@ export function FuncionarioEditar() {
                       id="email"
                       type="email"
                       placeholder={func.email}
-                      value={email}
+                      value={email || email == '' ? email : func.email}
                       onChange={event => setEmail(event.target.value)}
                     />
                   </div>
@@ -124,7 +139,7 @@ export function FuncionarioEditar() {
                       id="telefone"
                       type="text"
                       placeholder={func.telefone}
-                      value={telefone}
+                      value={telefone || telefone == '' ? telefone : func.telefone}
                       onChange={event => setTelefone(event.target.value)}
                     />
                   </div>
@@ -138,7 +153,7 @@ export function FuncionarioEditar() {
                       id="cidade"
                       type="text"
                       placeholder={func.cidade}
-                      value={cidade}
+                      value={cidade || cidade == '' ? cidade : func.cidade}
                       onChange={event => setCidade(event.target.value)}
                     />
                   </div>
@@ -148,7 +163,7 @@ export function FuncionarioEditar() {
                       id="CEP"
                       type="text"
                       placeholder={func.CEP}
-                      value={CEP}
+                      value={CEP || CEP == '' ? CEP : func.CEP}
                       onChange={event => setCEP(event.target.value)}
                     />
                   </div>
@@ -159,7 +174,7 @@ export function FuncionarioEditar() {
                       id="estado"
                       type="text"
                       placeholder={func.estado}
-                      value={estado}
+                      value={estado || estado == '' ? estado : func.estado}
                       onChange={event => setEstado(event.target.value)}
                     />
                   </div>
@@ -172,7 +187,7 @@ export function FuncionarioEditar() {
                       id="rua"
                       type="text"
                       placeholder={func.rua}
-                      value={rua}
+                      value={rua || rua == '' ? rua : func.rua}
                       onChange={event => setRua(event.target.value)}
                     />
                   </div>
@@ -183,7 +198,7 @@ export function FuncionarioEditar() {
                       id="numero"
                       type="text"
                       placeholder={func.numero}
-                      value={numero}
+                      value={numero || numero == '' ? numero : func.numero}
                       onChange={event => setNumero(event.target.value)}
                     />
                   </div>
@@ -193,10 +208,10 @@ export function FuncionarioEditar() {
                       id="setor"
                       onChange={event => setSetor(event.target.value)}
                     >
-                      <option value=""></option>
+                      <option value="">-Selecione-</option>
                       {setores.map(set => {
                         return (
-                          <option key={set.id} value={set.nome} selected = {set.nome == func.setor ? true : false}>
+                          <option key={set.id} value={set.nome} selected={set.nome == func.setor ? true : false}>
                             {set.nome}
                           </option>
                         )
