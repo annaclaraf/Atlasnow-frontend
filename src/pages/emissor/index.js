@@ -62,13 +62,15 @@ export function Emissor() {
     navigate('/emissor/editar')
   }
   async function Excluir(id) {
-    const response = await api.delete(`/emissores/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    alert('O emissor foi excluído!')
-    setLoad(response)
+    if(window.confirm("Tem certeza que deseja excluir esse emissor?")) {
+      const response = await api.delete(`/emissores/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      alert('O emissor foi excluído!')
+      setLoad(response)
+    }
   }
 
   return (

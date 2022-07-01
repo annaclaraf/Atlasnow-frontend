@@ -60,13 +60,15 @@ export function Funcionario() {
     navigate('/funcionarios/editar')
   }
   async function Excluir(cpf) {
-    const response = await api.delete(`/funcionarios/${cpf}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    alert('O funcionario foi excluído!')
-    setLoad(response)
+    if(window.confirm("Tem certeza que deseja excluir esse funcionário?")) {
+      const response = await api.delete(`/funcionarios/${cpf}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      alert('O funcionario foi excluído!')
+      setLoad(response)
+    }
   }
 
   return (
