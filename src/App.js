@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import React, { useContext } from 'react';
 
 import { Inicial } from './pages/inicial/index'
 import { Login } from './pages/login/index'
@@ -21,31 +22,44 @@ import { AtaEditar } from './pages/ata/editar/index'
 
 import './App.css'
 
+import { AuthProvider, AuthContext } from './context/AuthContext';
+
 function App() {
+
+  const Private = ({ children }) => {
+    const { authenticated } = useContext(AuthContext);
+
+    if (!authenticated) {
+      return <Navigate to="/login" />
+    }
+
+    return children;
+  };
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Inicial />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/funcionarios" element={<Funcionario />} />
-        <Route
-          path="/funcionarios/cadastro"
-          element={<FuncionarioCadastro />}
-        />
-        <Route path="/funcionarios/editar" element={<FuncionarioEditar />} />
-        <Route path="/funcionarios/view" element={<FuncionarioView />} />
-        <Route path="/emissor" element={<Emissor />} />
-        <Route path="/emissor/editar" element={<EmissorEditar />} />
-        <Route path="/emissor/view" element={<EmissorView />} />
-        <Route path="/emissor/cadastrar" element={<EmissorCadastro />} />
-        <Route path="/setor" element={<Setor />} />
-        <Route path="/setor/cadastrar" element={<SetorCadastro />} />
-        <Route path="/setor/editar" element={<SetorEditar />} />
-        <Route path="/atas" element={<Ata />} />
-        <Route path="/atas/cadastrar" element={<AtaCadastro />} />
-        <Route path="/atas/editar" element={<AtaEditar />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route exact path="/" element={<Inicial />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/home" element={<Private>  <Home /> </Private>} />
+          <Route path="/funcionarios" element={<Private> <Funcionario /> </Private>} />
+          <Route path="/funcionarios/cadastro" element={<Private> <FuncionarioCadastro /> </Private>} />
+          <Route path="/funcionarios/editar" element={<Private> <FuncionarioEditar /> </Private>} />
+          <Route path="/funcionarios/view" element={<Private> <FuncionarioView /> </Private>} />
+          <Route path="/emissor" element={<Private> <Emissor /> </Private>} />
+          <Route path="/emissor/editar" element={<Private> <EmissorEditar /> </Private>} />
+          <Route path="/emissor/view" element={<Private> <EmissorView /> </Private>} />
+          <Route path="/emissor/cadastrar" element={<Private> <EmissorCadastro /> </Private>} />
+          <Route path="/setor" element={<Private> <Setor /> </Private>} />
+          <Route path="/setor/cadastrar" element={<Private> <SetorCadastro /> </Private>} />
+          <Route path="/setor/editar" element={<Private> <SetorEditar /> </Private>} />
+          <Route path="/atas" element={<Private> <Ata /> </Private>} />
+          <Route path="/atas/cadastrar" element={<Private> <AtaCadastro /> </Private>} />
+          <Route path="/atas/editar" element={<Private> <AtaEditar /> </Private>} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }
