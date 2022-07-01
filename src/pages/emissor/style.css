@@ -164,6 +164,8 @@ button.button {
 }
 button.voltar {
   left: 7rem;
+  bottom: 0;
+  position: fixed;
 }
 button.cadastrar {
   right: 0;
