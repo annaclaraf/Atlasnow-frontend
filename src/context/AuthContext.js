@@ -21,16 +21,24 @@ export const AuthProvider = ( {children} ) => {
   }, [])
   
   const login = async (email,password) => {
-    const response = await api.post('/login', { email, password })
+    try{
+      const response = await api.post('/login', { email, password })
 
-    const token = response.data.token;
+      const token = response.data.token;
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("authenticated", true);
+      localStorage.setItem("token", token);
+      localStorage.setItem("authenticated", true);
 
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+      setAuthenticated(localStorage.getItem('authenticated'))
 
-    navigate("/home");
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+
+      navigate("/home");
+
+    } catch (err) {
+      alert(err.response.data.error)
+    }
+    
   }
 
   const logout = () => {
