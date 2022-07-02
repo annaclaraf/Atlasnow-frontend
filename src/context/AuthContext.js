@@ -20,13 +20,14 @@ export const AuthProvider = ( {children} ) => {
     setAuthenticated(localStorage.getItem('authenticated'));
   }, [])
   
-  const login = async (email,password) => {
+  const login = async (email,password, user ) => {
     try{
-      const response = await api.post('/login', { email, password })
+      const response = await api.post(`${user}/login`, { email, password })
 
       const token = response.data.token;
 
       localStorage.setItem("token", token);
+      localStorage.setItem("user", user);
       localStorage.setItem("authenticated", true);
 
       setAuthenticated(localStorage.getItem('authenticated'))
@@ -44,7 +45,8 @@ export const AuthProvider = ( {children} ) => {
   const logout = () => {
     if(window.confirm("Deseja realmente sair?")) {
         localStorage.removeItem("token");  
-        localStorage.removeItem("authenticated");     
+        localStorage.removeItem("authenticated"); 
+        localStorage.removeItem("user");
         api.defaults.headers.Authorization = null;
         
         navigate("/login");

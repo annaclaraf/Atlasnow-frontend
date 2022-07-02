@@ -9,11 +9,12 @@ export function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [user, setUser] = useState('')
 
   async function handleLogin(event) {
     event.preventDefault()
 
-    login(email,password);
+    login(email,password, user);
   }
 
   return (
@@ -53,6 +54,16 @@ export function Login() {
           </svg>
         </div>
         <form id="form" onSubmit={handleLogin}>
+          <div>
+            <input type="radio" name="user" value="admin" onChange={(e)=>{setUser(e.target.value)}} required />
+            <label>ADMIN</label>
+            <input type="radio" name="user" value="emissor" onChange={(e)=>{setUser(e.target.value)}}/>
+            <label>EMISSOR</label>
+            <input type="radio"  name="user" value="funcionario" onChange={(e)=>{setUser(e.target.value)}}/>
+            <label>FUNCIONARIO</label>
+
+          </div>
+
           <label id="espace" htmlFor="Email">
             E-mail
           </label>
