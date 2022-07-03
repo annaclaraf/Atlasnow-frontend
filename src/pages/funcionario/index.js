@@ -49,6 +49,16 @@ export function Funcionario() {
     navigate('/home')
   }
   async function paginaCadastro() {
+    const response = await api.get('/setor', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+    if(response.data.length == 0){
+      alert('Nenhum setor cadastrado no sistema.')
+      return
+    }
     navigate('/funcionarios/cadastro')
   }
   async function Visualizar(cpf) {
@@ -66,7 +76,7 @@ export function Funcionario() {
           Authorization: `Bearer ${token}`
         }
       })
-      alert('O funcionario foi excluído!')
+      alert('O funcionário foi excluído!')
       setLoad(response)
     }
   }

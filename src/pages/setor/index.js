@@ -58,13 +58,13 @@ export function Setor() {
     navigate('/setor/editar')
   }
   async function Excluir(id) {
-    if(window.confirm("Tem certeza que deseja excluir essa ata?")) {
+    if(window.confirm("Tem certeza que deseja excluir esse setor?")) {
       const response = await api.delete(`/setor/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      alert('O Setor foi excluído!')
+      alert('O setor foi excluído!')
       setLoad(response)
     }
   }
