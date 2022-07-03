@@ -8,11 +8,14 @@ import { IconContext } from 'react-icons'
 
 import {  AuthContext } from "../../context/AuthContext";
 
+import { Permission } from "../Permission/index"
+
 
 import './style.css'
 
 export function Sidebar() {
   const [sidebar, setSidebar] = useState(false)
+  const [user, setUser] = useState(localStorage.getItem("user"))
 
   const showSidebar = () => setSidebar(!sidebar)
 
@@ -37,19 +40,33 @@ export function Sidebar() {
             </li>
             <li className="user">
               <FaIcons.FaUserCircle />
-              ADMIN
+              {user.toUpperCase()}
             </li>
             
 
             {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              )
+              if(item.role) {
+                return (
+                  <Permission role={[`ROLE_${item.role}`]}>
+                    <li key={index} className={item.cName}>
+                      <Link to={item.path}>
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </Link>
+                    </li>
+                  </Permission>
+                )
+              }
+              else {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                )
+              }
             })}
             <li >
               <button className="logoff" onClick={() =>{

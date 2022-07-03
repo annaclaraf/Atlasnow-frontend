@@ -4,6 +4,8 @@ import { format } from 'date-fns'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../services/api'
 
+import { Permission } from "../../components/Permission/index"
+
 import { Sidebar } from '../../components/Sidebar/index'
 import './style.css'
 
@@ -96,9 +98,11 @@ export function Ata() {
             
            
           </div>
+           <Permission role={["ROLE_emissor"]}>
           <button className="button" onClick={paginaCadastro}>
             Cadastrar Ata
           </button>
+          </Permission>
         </header>
 
         <div>
@@ -126,19 +130,21 @@ export function Ata() {
                         <br></br>
                         Visualizar
                       </button>
-                      <button onClick={() => Editar(a.id)} className="icon">
-                        <FaIcons.FaUserEdit />
-                        <br></br>
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => Excluir(a.id)}
-                        className="icon-delete"
-                      >
-                        <FaIcons.FaUserTimes />
-                        <br></br>
-                        Excluir
-                      </button>
+                      <Permission role={["ROLE_emissor"]}>
+                        <button onClick={() => Editar(a.id)} className="icon">
+                          <FaIcons.FaUserEdit />
+                          <br></br>
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => Excluir(a.id)}
+                          className="icon-delete"
+                        >
+                          <FaIcons.FaUserTimes />
+                          <br></br>
+                          Excluir
+                        </button>
+                      </Permission>
                     </td>
                   </tr>
                 </tbody>

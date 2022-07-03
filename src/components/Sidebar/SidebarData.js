@@ -13,25 +13,29 @@ export const SidebarData = [
     title: 'Funcionários',
     path: '/funcionarios',
     icon: <FaIcons.FaUsers />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    role: 'admin'
   },
   {
     title: 'Emissores',
     path: '/emissor',
     icon: <FaIcons.FaUsers />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    role: 'admin'
   },
   {
     title: 'Setores',
     path: '/setor',
     icon: <FaIcons.FaRegListAlt />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    role: 'admin'
   },
   {
     title: 'Atas',
     path: '/atas',
     icon: <FaIcons.FaRegFileAlt />,
     cName: 'nav-text'
+
   }
   
 ]
