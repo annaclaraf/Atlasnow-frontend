@@ -1,8 +1,6 @@
 .titulo{
   text-align: left;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+  align-items: center;
 }
 input#titulo{
   width: 50%;

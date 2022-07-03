@@ -17,7 +17,7 @@
 
 .nav-menu {
   background-color: #060b26;
-  width: 200px;
+  width: 250px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -83,9 +83,7 @@ button.logoff {
   color: white;
   padding-bottom: 20px;
 }
-svg{
-  font-size: 25px;
-}
+
 .user svg {
   font-size: 40px;
 }
