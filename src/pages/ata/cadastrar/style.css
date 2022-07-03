@@ -104,6 +104,12 @@ button {
   padding-left: 10px;
  
 }
+textarea {
+  resize: none;
+  border-radius: 5px;
+  background: none;
+  border: 1px solid black;
+}
 .buscar-nome{ 
 margin-top: 20px;
 display: inline;
@@ -111,3 +117,19 @@ display: inline;
 input#nome-busca{
 width: 80%;
 }
+
+
+.palavrachave,.participante{
+
+text-align: left;
+display: block;
+padding-left: 10px;
+
+
+}
+button.add{
+margin-right: 10px;
+
+}
+
+

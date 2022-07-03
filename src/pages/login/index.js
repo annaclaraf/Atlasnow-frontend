@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 
 import {  AuthContext } from "../../context/AuthContext";
 
-import './style.css'
+import './login.css'
 
 export function Login() {
   const { login } = useContext(AuthContext);
@@ -54,13 +54,13 @@ export function Login() {
           </svg>
         </div>
         <form id="form" onSubmit={handleLogin}>
-          <div>
-            <input type="radio" name="user" value="admin" onChange={(e)=>{setUser(e.target.value)}} required />
-            <label>ADMIN</label>
+          <div className='option-login'>
+            <input type="radio" name="user" value="admin" onChange={(e)=>{setUser(e.target.value)}} required /> 
+            <label className='option-login-txt'>ADMIN</label>
             <input type="radio" name="user" value="emissor" onChange={(e)=>{setUser(e.target.value)}}/>
-            <label>EMISSOR</label>
+            <label className='option-login-txt'>EMISSOR</label>
             <input type="radio"  name="user" value="funcionario" onChange={(e)=>{setUser(e.target.value)}}/>
-            <label>FUNCIONARIO</label>
+            <label className='option-login-txt'>FUNCIONARIO</label>
 
           </div>
 

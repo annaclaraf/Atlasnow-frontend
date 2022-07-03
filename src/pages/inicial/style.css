@@ -35,7 +35,7 @@
 }
 
 .wrapper img {
-  max-width: 90%;
+  max-width: 100%;
 }
 
 section header h4 {
@@ -86,7 +86,7 @@ section .content p {
 /* #####-COLOR-CUSTOMIZATION
   -##### */
 
-#services .card circle {
+#services .card-i circle {
   fill: var(--box-background);
 }
 
@@ -136,6 +136,9 @@ nav .close-menu {
 
 nav.scroll .logo path {
   fill: white;
+}
+.logo:hover{
+cursor: pointer;
 }
 
 nav.scroll button path {
@@ -291,7 +294,9 @@ body.menu-expanded button path {
 
 /* #####-SERVICES-##### */
 
-#services header h2 {
+#services header #h2 {
+  padding-top: 72px;
+  display: block;
   margin-bottom: 6rem;
 }
 
@@ -301,7 +306,7 @@ body.menu-expanded button path {
   gap: 3.2rem;
 }
 
-#services .card {
+#services .card-i {
   padding: 2.4rem;
   text-align: center;
   background: white;
@@ -309,7 +314,7 @@ body.menu-expanded button path {
   border: 1px solid var(--background-color);
 }
 
-#services .card h3 {
+#services .card-i h3 {
   margin-block: 1.6rem;
 }
 
@@ -355,6 +360,7 @@ body.menu-expanded button path {
   background-color: var(--primary-color);
   text-align: left;
   color: white;
+  margin: 0px;
 }
 
 .inicial footer .logo {
@@ -522,7 +528,7 @@ body.menu-expanded button path {
 
   /* #####-HOME-##### */
   #home::before {
-    height: calc(110% - var(--navi-height));
+    height: calc(125% - var(--navi-height));
   }
 
   #home {
@@ -565,7 +571,7 @@ body.menu-expanded button path {
   }
 
   #home img {
-    width: 42rem;
+    font-size: ;
   }
 
   /* #####-SERVICE-##### */
@@ -581,7 +587,7 @@ body.menu-expanded button path {
     gap: 4rem;
   }
 
-  #services .card {
+  #services .card-i {
     width: 30%;
     flex-grow: 1;
   }

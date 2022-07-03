@@ -21,7 +21,7 @@ backface-visibility: hidden;
     transform: scale(0.9);  
 }
 .card:hover:after{
-    height: 280px;
+    height: 150px;
 }
 .card:hover .con-text p{
     text-align: center;
@@ -143,7 +143,7 @@ border-radius: 6px;
 .wrapper-card{
     margin-top: 5%;
     margin-left: 60px;
-
+    padding-left: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }

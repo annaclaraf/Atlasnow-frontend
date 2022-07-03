@@ -73,7 +73,8 @@
 span {
   margin-left: 16px;
 }
-li.user {
+li.user,
+button.logoff {
   list-style: none;
   margin-inline: auto;
   display: flex;
@@ -82,10 +83,22 @@ li.user {
   color: white;
   padding-bottom: 20px;
 }
-
+svg{
+  font-size: 25px;
+}
 .user svg {
   font-size: 40px;
 }
 .user li svg {
   font-size: 30px;
+}
+.logoff{
+  margin-top: 100px;
+  
+display: flex;
+flex-direction: column;
+
+}
+.logoff svg{
+  font-size: 25px;
 }

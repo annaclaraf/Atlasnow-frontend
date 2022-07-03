@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
 import { Sidebar } from '../../../components/Sidebar/index'
+import * as IosIcons from "react-icons/io";
 
 import './style.css'
+
 
 export function AtaCadastro() {
     const token = localStorage.getItem('token')
@@ -17,8 +19,9 @@ export function AtaCadastro() {
     const [setor, setSetor] = useState('')
     const [setores, setSetores] = useState([])
     const [descricao, setDescricao] = useState('')
-    const [palavrasChave, setPalavrasChave] = useState('')
+    const [palavrasChave, setPalavrasChave] = useState([''])
     const [ata, setAta] = useState('')
+    const [participantes, setParticipantes] = useState([''])
 
     async function handleCreate(event) {
         event.preventDefault()
@@ -33,6 +36,7 @@ export function AtaCadastro() {
                     setor,
                     descricao,
                     palavrasChave,
+                    participantes,
                     ata
                 },
                 {
@@ -63,6 +67,29 @@ export function AtaCadastro() {
         navigate('/atas')
     }
 
+    const addInputPalavra = (e) => {
+        e.preventDefault()
+        setPalavrasChave([...palavrasChave, ""])
+    }
+    const addInputParticipante = (e) => {
+        e.preventDefault()
+        setParticipantes([...participantes, ""])
+    }
+    const handleChangePalavras = (e, index) => {
+        palavrasChave[index] = e.target.value
+        setPalavrasChave([...palavrasChave])
+    }
+    const handleChangeParticipante = (e, index) => {
+        participantes[index] = e.target.value
+        setParticipantes([...participantes])
+    }
+    const handleRemoveInputParticipante = (position) => {
+        setParticipantes([...participantes.filter((_, index) => index !== position)])
+    }
+    const handleRemoveInputPalavra = (position) => {
+        setPalavrasChave([...palavrasChave.filter((_, index) => index !== position)])
+    }
+   
     return (
         <main>
             <Sidebar />
@@ -108,54 +135,7 @@ export function AtaCadastro() {
                                     required
                                 />
                             </div>
-                            <div className="palavrasChave">
-                                <p>Palavras-Chave:</p>
-
-                                <input
-                                    id="palavrasChave"
-                                    type="text"
-                                    placeholder="Palavras-Chave:"
-                                    onChange={event => setPalavrasChave(event.target.value)}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="align-2">
-                            <div className="pauta">
-                                <p>Pauta:</p>
-
-                                <textarea
-                                    id="ata"
-                                    placeholder="Digite aqui as informções tratadas da Reunião"
-                                                                                                                                 
-                                    onChange={event => setPauta(event.target.value)}
-                                    required>
-                                </textarea>
-                            </div>
-                            
-                            <div className="descricao">
-                                <p>Descrição:</p>
-                                <input
-                                    id="descricao"
-                                    type="text"
-                                    placeholder="Digite aqui a descrição da Reunião"
-                                    onChange={event => setDescricao(event.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className='participantes'>
-                                <p>Participantes</p>
-                                <input
-                                    id="participantes"
-                                    type="text"
-                                    placeholder="Digite aqui o nome do fúncionário"
-                                    onChange={event => setDescricao(event.target.value)}
-                                    required
-                                />
-
-                            </div>
-                            <div className="setor">
+                            <div >
                                 <p>Setor:</p>
                                 <select
                                     id="setor"
@@ -170,27 +150,131 @@ export function AtaCadastro() {
                                         )
                                     })}
                                 </select>
-                            </div>  
-                           
+                            </div>
+
                         </div>
-                        
-                        <div className="align-3">
-                            
-                            
-                            <div className="ata">
-                                <p>Ata:</p>
+
+                        <div className="align-2">
+                            <div className="pauta">
+                                <p>Pauta:</p>
 
                                 <textarea
                                     id="ata"
                                     placeholder="Digite aqui as informções tratadas da Reunião"
-                                    onChange={event => setAta(event.target.value)}
-                                  
-                                    required
-                                >
-
+                                    onChange={event => setPauta(event.target.value)}
+                                    rows="5"
+                                    cols="40"
+                                    autoFocus
+                                    spellCheck
+                                    wrap='hard'
+                                    required>
                                 </textarea>
                             </div>
+
+                            <div className="descricao">
+                                <p>Descrição:</p>
+                                <textarea
+                                    id="descricao"
+                                    placeholder="Digite aqui a Descrição da Ata"
+                                    onChange={event => setDescricao(event.target.value)}
+                                    rows="5"
+                                    cols="40"
+                                    autoFocus
+                                    spellCheck
+                                    wrap='hard'
+                                    required>
+                                </textarea>
+                            </div>
+
+
+                        </div>
+                        <div className='align-2'>
+                        
+                            <div className="palavrachave">
+                                
+                                <button className='add' onClick={addInputPalavra}>
+                                    <IosIcons.IoIosAddCircleOutline />
+                                </button>
+                                
+                                
+
+                                {palavrasChave.map((palavrasChave, index) => (
+                                    <div key={index} className="palavrasChave">
+                                        
+                                            <p for={`Palavra-Chave ${index + 1}:`}> {`Palavra-Chave ${index + 1}:`}</p>
+                                            <div style={{ display: "flex" }}>
+                                            <input
+                                                id={`Palavra-Chave${index + 1}:`}
+                                                type="text"
+                                                placeholder={`Palavra-Chave ${index + 1}:`}
+                                                onChange={(e) => handleChangePalavras(e, index)}
+                                                required
+                                            />
+                                            <button
+                                               
+                                                onClick={() => { handleRemoveInputPalavra(index) }}><IosIcons.IoIosRemoveCircleOutline/></button>
+                                        </div>
+                                    </div>
+                                ))}
+
+
+                            </div>
                             
+
+                            <div className="participante">
+                                <button className='add' onClick={addInputParticipante}>
+                                    <IosIcons.IoIosAddCircleOutline />
+                                </button>
+
+                                {participantes.map((participantes, index) => (
+
+                                    <div key={index} >
+
+                                        <p for={`Participante ${index + 1}:`}> {`Participante ${index + 1}:`}</p>
+                                        <div style={{ display: "flex" }}>
+                                            <input
+                                                id={`Participante${index + 1}:`}
+                                                type="text"
+                                                placeholder={`Participante ${index + 1}:`}
+                                                onChange={(e) => handleChangeParticipante(e, index)}
+                                                required
+                                            />
+
+                                            <button
+                                               
+                                                onClick={() => { handleRemoveInputParticipante(index) }}><IosIcons.IoIosRemoveCircleOutline/></button>
+                                        </div>
+                                    </div>
+                                ))}
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                        <div className="ata">
+                            <p>Ata:</p>
+
+                            <textarea
+                                id="ata"
+                                placeholder="Digite aqui as informções tratadas da Reunião"
+                                onChange={event => setAta(event.target.value)}
+                                rows="10"
+                                cols="80"
+                                autoFocus
+                                spellCheck
+                                wrap='hard'
+                                required
+                            >
+
+                            </textarea>
                         </div>
                         <button className="button" onClick={handleCreate}>
                             Cadastrar
