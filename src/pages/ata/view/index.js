@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import * as FaIcons from 'react-icons/fa'
 import { api } from '../../../services/api'
-import { Sidebar } from '../../../components/Sidebar/index'
+
 
 import './view.css'
 
@@ -36,59 +36,6 @@ export function AtaView() {
         loadAta()
     }, [])
 
-    async function handleUpdate(event) {
-        event.preventDefault()
-        if (
-            tituloReuniao == '' ||
-            pauta == '' ||
-            descricao == '' ||
-            palavrasChave == '' ||
-            ata == ''
-        ) {
-            alert("Nenhum campo pode ficar em branco")
-            return
-        }
-
-        if (
-            !tituloReuniao && 
-            !dataInicio &&
-            !dataFim &&
-            !pauta &&
-            !setor &&
-            !descricao &&
-            !palavrasChave &&
-            !ata
-        ) {
-            navigate('/atas')
-            return
-        }
-
-        
-        try {
-            await api.put(
-                `/atas/${id}`,
-                {
-                    tituloReuniao,
-                    dataInicio,
-                    dataFim,
-                    pauta,
-                    setor,
-                    descricao,
-                    palavrasChave,
-                    ata
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
-
-            navigate('/atas')
-        } catch (err) {
-            alert(err.response.data.error)
-        }
-    }
 
     async function loadSetores() {
         const response = await api.get('/setor', {
@@ -105,20 +52,16 @@ export function AtaView() {
         navigate('/atas')
     }
 
-    async function imprimir(){
-        var conteudo = document.getElementById('sua_div').innerHTML,
-        tela_impressao = window.open('about:blank')
-        tela_impressao.document.write(conteudo)
-        tela_impressao.window.print();
-        tela_impressao.window.close();
-    }
-
+    
     return (
         <main>
            
                 <body id='ata-view'>
                 <section className='wrapper'>
-                        <div id="printable">
+                {atas.map(a => {
+                      
+                      
+                        <div key={a.id} id="printable">
 
                             
                         <div className="titulo-ata"> 
@@ -151,14 +94,34 @@ export function AtaView() {
                                         fill="white"
                                         />
                                         </svg>
-                                <h3>Atas[]Título</h3> 
+                                <h3>{tituloReuniao || tituloReuniao == '' ? tituloReuniao : a.tituloReuniao}</h3> 
                                 
                         </div>
                         <div className="infos">
-                            <label for="data"> Data:</label> 
-                            <label for="hora"> Horário:</label>
-                            <label for="emissor">Emissor:</label>
-                            <label for="setor">Setor:</label>
+                            <label for="data"> Data: {
+                                                dataInicio
+                                                ? dataInicio
+                                                : format(
+                                                    new Date(a.dataInicio),
+                                                        "yyyy-MM-dd'T'HH:mm"
+                                                )
+                                            }</label> 
+                            <label for="hora"> Horário: {
+                                                dataFim
+                                                ? dataFim
+                                                : format(
+                                                    new Date(a.dataFim),
+                                                        "yyyy-MM-dd'T'HH:mm"
+                                                )
+                                            }</label>
+                            <label for="emissor">Emissor:{pauta || pauta == '' ? pauta : a.pauta}</label>
+                            <label for="setor">Setor:{setores.map(set => {
+                                                return (
+                                                    <option key={set.id} value={set.nome} selected={set.nome == a.setor ? true : false}>
+                                                        {set.nome}
+                                                    </option>
+                                                )
+                                            })}</label>
                         </div>
                         <p>----------------------------------------------------------------------------------------------</p>
                             
@@ -182,17 +145,17 @@ export function AtaView() {
 
                         <div className="descricao">
                             <h3>Descrição</h3>
-                        <p></p>
+                        <p>{descricao || descricao == '' ? descricao : a.descricao}</p>
                         </div>
                         <p>----------------------------------------------------------------------------------------------</p>                     
 
                         <div className="atas"><h3>Objetivos</h3>
-                                
+                              <p>{ata || ata == '' ? ata : a.ata}</p>  
                         </div>
                         <p>----------------------------------------------------------------------------------------------</p>
                         <div className="palavras-chaves"><h5>Palavras chaves</h5>
 
-                        <p></p>
+                        <p>{palavrasChave || palavrasChave == '' ? palavrasChave : a.palavrasChave}</p>
                         </div>
                             
                         <p>----------------------------------------------------------------------------------------------</p>
@@ -200,11 +163,13 @@ export function AtaView() {
                         <ul className="email">
                             <li></li>
                         </ul>
+                   
                         <div className="opcao">
-                                <button className='button' oncaptu={imprimir}>Enviar notificação para os participantes</button>
+                                <button className='button'>Enviar notificação para os participantes</button>
                                 <button className='button' id="btn">imprimir</button>
                         </div>
                         </div>
+                         })}  
                         <footer>
                     <button className="voltar" onClick={paginaAta}>
                         <FaIcons.FaRegArrowAltCircleLeft />

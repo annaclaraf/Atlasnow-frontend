@@ -84,13 +84,13 @@ export function AtaCadastro() {
         setParticipantes([...participantes])
     }
     const handleRemoveInputParticipante = (position) => {
-        if(position === 0){
+        if(position == 0){
             setParticipantes([...participantes.filter((_, index) => index == position)])
         }else
         setParticipantes([...participantes.filter((_, index) => index !== position)])
     }
     const handleRemoveInputPalavra = (position) => {
-        if(position === 0){
+        if(position == 0){
             setPalavrasChave([...palavrasChave.filter((_, index) => index == position)])
         }else
         setPalavrasChave([...palavrasChave.filter((_, index) => index !== position)])

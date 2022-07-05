@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import img1 from '../../assets/img4.jpg'
+import img1 from '../../assets/img1.png'
+import img2 from '../../assets/img2.png'
+import img3 from '../../assets/img3.png'
 import { Sidebar } from '../../components/Sidebar/index'
 import { useNavigate } from 'react-router-dom'
-import Loading from '../../components/Loading/loading'
 import { api } from '../../services/api'
 
 import './home.css'
@@ -14,7 +15,7 @@ export function Home() {
     const [emissor, setEmissor] = useState([]);
     const [setor, setSetor] = useState([]);
     const [atas, setAtas] = useState([]);
-    const [removeLoading, setRemoveloading] = useState(false);
+
 
 
     useEffect(() => {
@@ -58,26 +59,14 @@ export function Home() {
         loadEmi()
         loadSet()
         loadAta()
-        setRemoveloading(true)
+       
     },2000)
     }, []);
 
-    async function paginaFuncionario() {
-        navigate('/funcionarios')
-      }
-      async function paginaEmissor() {
-        navigate('/emissor')
-      }
-      async function paginaSetor() {
-        navigate('/setor')
-      }
-      async function paginaAtas() {
-        navigate('/atas')
-      }
+    
     return (
         <main>
-             {!removeLoading && <Loading/> }
-     
+          
        
             
              <Sidebar />
@@ -113,7 +102,7 @@ export function Home() {
           </svg>
                <div className='wrapper-card'>
                 
-               <div className='card'>
+                <div className='card'>
                 <ul className='ul'>
                 <li>
                         <i className='bx bx-drink'>TESTE</i>
@@ -134,7 +123,7 @@ export function Home() {
                     </h2>
                     <p>
                             Total de funcionários: <br></br>{funcionario.length}
-                            <button onClick={paginaFuncionario}> Acessar página</button>
+                        
                     </p>
                     
                 </div>
@@ -153,14 +142,47 @@ export function Home() {
                     
                     
                 </ul>
-                <img src={img1} />
+                <img id='t' src={img3} />
                 <div className='con-text'>
                     <h2 className='titulo-card'>
                         Emissores
                     </h2>
                     <p>
                            Total de emissor: <br></br> {emissor.length}
-                            <button onClick={paginaEmissor}> Acessar página</button>
+                          
+                    </p>
+                    
+                </div>
+               </div>
+                </div>
+                <div>
+
+                </div>
+               
+               
+               <div className='wrapper-card'>
+               <div className='card'>
+                <ul className='ul'>
+                <li>
+                        <i className='bx bx-drink'>TESTE</i>
+                    </li>
+                    <li>
+                        <i className='bx bx-drink'>TESTE</i>
+                    </li>
+                    <li>
+                        <i className='bx bx-drink'>TESTE</i>
+                    </li>
+                    
+                    
+                </ul>
+                <img  src={img2} />
+                <div className='con-text'>
+                    <h2 className='titulo-card'>
+                        Setores
+                    </h2>
+                    <p>
+                    Total de setores:<br></br>{setor.length}
+     
                     </p>
                     
                 </div>
@@ -179,22 +201,18 @@ export function Home() {
                     
                     
                 </ul>
-                <img src={img1} />
+                <img  src={img2} />
                 <div className='con-text'>
                     <h2 className='titulo-card'>
-                        Setores
+                        Atas
                     </h2>
                     <p>
-                    Total de setores:<br></br>{setor.length}
-                            <button onClick={paginaSetor}> Acessar página</button>
+                    Total de Atas cadastradas:<br></br>{atas.length}
+     
                     </p>
                     
                 </div>
                </div>
-
-               </div>
-               <div className='wrapper-card'>
-                
                </div>
               
               
