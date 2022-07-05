@@ -11,7 +11,7 @@ export function EmissorCadastro() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  const [nome, setNome] = useState('')
+  const [cpf, setNome] = useState('')
   const [CPF, setFuncionario] = useState([])
   const [dataAdmissao, setDataAdmissao] = useState('')
   const [dataFimAdmissao, setDataFimAdmissao] = useState(null)
@@ -20,7 +20,7 @@ export function EmissorCadastro() {
     event.preventDefault()
 
     try {
-      const response = await api.get(`/funcionarios/${nome}`, {
+      const response = await api.get(`/funcionarios/${cpf}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -82,7 +82,7 @@ export function EmissorCadastro() {
                   type="text"
                   placeholder="Digite aqui o nome do Funcionário"
                   onChange={event => setNome(event.target.value)}
-                  value={nome}
+                  value={cpf}
                 />
                 <button onClick={handleSearch}>
                   <FaIcons.FaSearch />

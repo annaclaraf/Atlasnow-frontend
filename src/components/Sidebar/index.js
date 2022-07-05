@@ -68,7 +68,9 @@ export function Sidebar() {
                 )
               }
             })}
-            <li >
+            
+             
+            <footer>
               <button className="logoff" onClick={() =>{
                   logout();
                   
@@ -76,8 +78,10 @@ export function Sidebar() {
                 <AMIcons.ImExit />
                 SAIR
               </button>
-            </li>
+              </footer>
+           
           </ul>
+          
         </nav>
       </IconContext.Provider>
     </>
