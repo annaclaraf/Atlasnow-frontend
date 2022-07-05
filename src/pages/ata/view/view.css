@@ -11,19 +11,19 @@
       top: 0;
     }
 }
-#ata{
+#ata-view{
 width: 70%;
 margin-inline: auto;
 text-align: start;
 
 }
-p{
+#ata-view p{
 text-align: center;
 }
 h3{
   margin-bottom: 20px;
 }
-.titulo{
+.titulo-ata{
 margin-bottom: 20px;
 font-size: 20px;
 display: flex;

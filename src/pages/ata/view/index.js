@@ -116,12 +116,12 @@ export function AtaView() {
     return (
         <main>
            
-                <body id='ata'>
+                <body id='ata-view'>
                 <section className='wrapper'>
                         <div id="printable">
 
                             
-                        <div className="titulo"> 
+                        <div className="titulo-ata"> 
                                         <svg
                                         width="202"
                                         height="64"
