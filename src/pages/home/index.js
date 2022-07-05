@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import img1 from '../../assets/img4.jpg'
 import { Sidebar } from '../../components/Sidebar/index'
 import { useNavigate } from 'react-router-dom'
-
+import Loading from '../../components/Loading/loading'
 import { api } from '../../services/api'
 
 import './home.css'
@@ -14,9 +14,11 @@ export function Home() {
     const [emissor, setEmissor] = useState([]);
     const [setor, setSetor] = useState([]);
     const [atas, setAtas] = useState([]);
+    const [removeLoading, setRemoveloading] = useState(false);
 
 
     useEffect(() => {
+        setTimeout(() => {
         async function loadFunc() {
             const response = await api.get('/funcionarios', {
                 headers: {
@@ -24,6 +26,7 @@ export function Home() {
                 }
             });
             setFuncionario(response.data)
+         
         }
 
         async function loadEmi() {
@@ -50,11 +53,13 @@ export function Home() {
             });
             setAtas(response.data)
         }
-
+       
         loadFunc()
         loadEmi()
         loadSet()
         loadAta()
+        setRemoveloading(true)
+    },2000)
     }, []);
 
     async function paginaFuncionario() {
@@ -71,7 +76,12 @@ export function Home() {
       }
     return (
         <main>
+             {!removeLoading && <Loading/> }
+     
+       
+            
              <Sidebar />
+             
             <section>
             <svg
             width="202"
@@ -187,9 +197,11 @@ export function Home() {
                 
                </div>
               
-               
-               
+              
+             
             </section>
+            
+
         </main>
     );
 }

@@ -90,18 +90,7 @@ export function Login() {
           <input className="button" type="submit" value="Login" />
         </form>
       </div>
-            <ul class="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
+           
     </div >
     </main>
   )
