@@ -25,9 +25,11 @@ export const AuthProvider = ( {children} ) => {
       const response = await api.post(`${user}/login`, { email, password })
 
       const token = response.data.token;
+      const emissor = response.data.e
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", user);
+      localStorage.setItem("emissor", emissor);
       localStorage.setItem("authenticated", true);
 
       setAuthenticated(localStorage.getItem('authenticated'))

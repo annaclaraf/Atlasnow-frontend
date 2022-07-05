@@ -11,32 +11,25 @@ export function EmissorCadastro() {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
 
-  const [cpf, setNome] = useState('')
-  const [CPF, setFuncionario] = useState([])
+  const [CPF, setCPF] = useState()
   const [dataAdmissao, setDataAdmissao] = useState('')
   const [dataFimAdmissao, setDataFimAdmissao] = useState(null)
+  const [funcionarios, setFuncionarios] = useState([])
 
-  async function handleSearch(event) {
-    event.preventDefault()
-
-    try {
-      const response = await api.get(`/funcionarios/${cpf}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setFuncionario(response.data)
-
-      setNome('')
-    } catch (err) {
-      alert(err.response.data.error)
-      setNome('')
+  useEffect(() => {
+    async function loadFunc() {
+        const response = await api.get('/funcionarios', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        setFuncionarios(response.data)
     }
-  }
+    loadFunc();
+  }, []);
 
   async function handleCreate(event) {
     event.preventDefault()
-
     try {
       const response = await api.post(
         '/emissores',
@@ -78,15 +71,25 @@ export function EmissorCadastro() {
               <div >
                 <p>Buscar Funcionário</p>
                 <input
-                id='nome-busca'
-                  type="text"
+                  id='nome-busca'
+                  type="search"
                   placeholder="Digite aqui o nome do Funcionário"
-                  onChange={event => setNome(event.target.value)}
-                  value={cpf}
+                  list="funcionario"
+                  onChange={event => setCPF(event.target.value)}
                 />
-                <button onClick={handleSearch}>
+                <button>
                   <FaIcons.FaSearch />
                 </button>
+
+    
+                <datalist id="funcionario">
+                  {funcionarios.map(f => {
+                    return (
+                     <option value={f.CPF}>{f.nome}</option>
+                    )
+                  })}
+                </datalist>
+
               </div>
             </div>
 
