@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
+import * as MdIcons from 'react-icons/md'
 import { api } from '../../services/api'
 
 import { Sidebar } from '../../components/Sidebar/index'
@@ -12,6 +13,7 @@ export function Funcionario() {
   const navigate = useNavigate()
 
   const [CPF, setCPF] = useState('')
+  const [nome, setNome] = useState('')
   const [funcionario, setFuncionario] = useState([])
   const [load, setLoad] = useState([])
 
@@ -31,18 +33,23 @@ export function Funcionario() {
     event.preventDefault()
 
     try {
-      const response = await api.get(`/funcionarios/${CPF}`, {
+      const response = await api.get(`/funcionarios/nome/${nome}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       })
       setFuncionario(response.data)
-
-      setCPF('')
     } catch (err) {
       alert(err.response.data.error)
       setCPF('')
     }
+  }
+
+  async function handleReset(event) {
+    event.preventDefault()
+
+    setNome('')
+    setLoad([])
   }
 
   async function paginaInicial() {
@@ -97,11 +104,15 @@ export function Funcionario() {
             <input
               type="text"
               placeholder="Buscar Funcionário"
-              onChange={event => setCPF(event.target.value)}
-              value={CPF}
+              onChange={event => setNome(event.target.value)}
+              value={nome}
             />
             <button onClick={handleSearch}>
             <FaIcons.FaSearch />
+            </button>
+            <button onClick={handleReset}>
+            <MdIcons.MdOutlineClear />
+
             </button>
           </div>
           <button className="button" onClick={paginaCadastro}>

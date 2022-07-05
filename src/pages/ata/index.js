@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import * as FaIcons from 'react-icons/fa'
+import * as MdIcons from 'react-icons/md'
+
 import { api } from '../../services/api'
 
 import { Permission } from "../../components/Permission/index"
@@ -40,12 +42,17 @@ export function Ata() {
         }
       })
       setAta(response.data)
-
-      setPalavrasChave('')
     } catch (err) {
       alert(err.response.data.error)
       setPalavrasChave('')
     }
+  }
+
+  async function handleReset(event) {
+    
+    event.preventDefault()
+    setPalavrasChave('')
+    setLoad([])
   }
 
 
@@ -111,6 +118,9 @@ export function Ata() {
             <FaIcons.FaSearch />
             </button>
             
+            <button onClick={handleReset}>
+              <MdIcons.MdOutlineClear />
+            </button>
            
           </div>
            <Permission role={["ROLE_emissor"]}>

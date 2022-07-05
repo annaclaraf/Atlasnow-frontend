@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
+import * as MdIcons from 'react-icons/md'
 import { api } from '../../services/api'
 
 import { Sidebar } from '../../components/Sidebar/index'
@@ -32,18 +33,22 @@ export function Setor() {
     event.preventDefault()
 
     try {
-      const response = await api.get(`/setor/${Nome}`, {
+      const response = await api.get(`/setor/nome/${Nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       setSetor(response.data)
-
-      setNome('')
     } catch (err) {
       alert(err.response.data.error)
-      setNome('')
     }
+  }
+
+  async function handleReset(event) {
+    
+    event.preventDefault()
+    setNome('')
+    setLoad()
   }
 
   async function paginaInicial() {
@@ -90,6 +95,9 @@ export function Setor() {
             />
             <button onClick={handleSearch}>
               <FaIcons.FaSearch />
+            </button>
+            <button onClick={handleReset}>
+              <MdIcons.MdOutlineClear />
             </button>
           </div>
           <button className="button" onClick={paginaCadastro}>
