@@ -78,6 +78,11 @@ export function Ata() {
     } 
   }
 
+  async function Visualizar(id) {
+    await localStorage.setItem('id', id)
+    navigate('/atas/view')
+  }
+
   async function Editar(id) {
     await localStorage.setItem('id', id)
     navigate('/atas/editar')
@@ -135,6 +140,7 @@ export function Ata() {
                     <td className="icones">
                       <button
                         className="icon"
+                        onClick={() => Visualizar(a.id)}
                       >
                         <FaIcons.FaRegEye />
                         <br></br>
