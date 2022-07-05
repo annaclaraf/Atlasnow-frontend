@@ -10,9 +10,11 @@ import './style.css'
 
 export function AtaCadastro() {
     const token = localStorage.getItem('token')
+    const emissor = localStorage.getItem('emissor')
     const navigate = useNavigate()
 
     const [tituloReuniao, setTituloReuniao] = useState('')
+    const [status, setStatus] = useState('')
     const [dataInicio, setDataInicio] = useState('')
     const [dataFim, setDataFim] = useState('')
     const [pauta, setPauta] = useState('')
@@ -22,21 +24,35 @@ export function AtaCadastro() {
     const [palavrasChave, setPalavrasChave] = useState([''])
     const [ata, setAta] = useState('')
     const [participantes, setParticipantes] = useState([''])
+    const [funcionarios, setFuncionarios] = useState([])
+
+    useEffect(() => {
+        async function loadFunc() {
+            const response = await api.get('/funcionarios', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setFuncionarios(response.data)
+        }
+        loadFunc();
+      }, []);
 
     async function handleCreate(event) {
         event.preventDefault()
         try {
-            await api.post(
+            const response = await api.post( 
                 '/atas',
                 {
+                    emissorId: emissor,
                     tituloReuniao,
+                    status,
                     dataInicio,
                     dataFim,
                     pauta,
                     setor,
                     descricao,
-                    palavrasChave,
-                    participantes,
+                    palavrasChave: palavrasChave.toString(),
                     ata
                 },
                 {
@@ -45,6 +61,23 @@ export function AtaCadastro() {
                     }
                 }
             )
+
+            participantes.forEach(p => {
+                api.post( 
+                    '/atas/participantes',
+                    {
+                        funcionarioCPF: p,
+                        ataId: response.data[0].id
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                )
+
+            })
+
 
             navigate('/atas')
         } catch (err) {
@@ -102,15 +135,36 @@ export function AtaCadastro() {
                 <div className="wrapper-cadastro-ata">
                     <h3>Preencha com as informações da Ata</h3>
                     <form>
-                        <div className="titulo">
-                            <p>Título:</p>
-                            <input
-                                id="titulo"
-                                type="text"
-                                placeholder="Título da Reunião"
-                                onChange={event => setTituloReuniao(event.target.value)}
-                                required
-                            />
+                        <div className="align-2">
+                            <div className="titulo">
+                                <p>Título:</p>
+                                <input
+                                    id="titulo"
+                                    type="text"
+                                    placeholder="Título da Reunião"
+                                    onChange={event => setTituloReuniao(event.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="status">
+                                <p>Status:</p>
+                                <label>Publica</label>
+                                <input
+                                    type="radio"
+                                    value="publica"
+                                    name="status"
+                                    onChange={event => setStatus(event.target.value)}
+                                    required
+                                />
+                                <label>Publica</label>
+                                <input
+                                    type="radio"
+                                    value="privada"
+                                    name="status"
+                                    onChange={event => setStatus(event.target.value)}
+                                />
+                            </div>
+
                         </div>
                         <div className="align-1">
                             <div className="dataInicio">
@@ -235,6 +289,7 @@ export function AtaCadastro() {
                                             <input
                                                 id={`Participante${index + 1}:`}
                                                 type="text"
+                                                list="funcionario"
                                                 placeholder={`Participante ${index + 1}:`}
                                                 onChange={(e) => handleChangeParticipante(e, index)}
                                                 required
@@ -247,6 +302,14 @@ export function AtaCadastro() {
                                     </div>
                                 ))}
 
+                                
+                                <datalist id="funcionario">
+                                    {funcionarios.map(f => {
+                                        return (
+                                        <option value={f.CPF}>{f.nome}</option>
+                                        )
+                                    })}
+                                </datalist>
 
 
                             </div>

@@ -3,7 +3,7 @@
   align-items: center;
 }
 input#titulo{
-  width: 50%;
+  width: 100%;
   text-align: center;
 }
 p{
@@ -107,6 +107,7 @@ textarea {
   border-radius: 5px;
   background: none;
   border: 1px solid black;
+  width: 90%
 }
 .buscar-nome{ 
 margin-top: 20px;
