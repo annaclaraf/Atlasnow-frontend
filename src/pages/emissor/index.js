@@ -13,7 +13,7 @@ export function Emissor() {
 
   const navigate = useNavigate()
 
-  const [id, setId] = useState('')
+  const [nome, setNome] = useState('')
   const [emissor, setEmissor] = useState([])
   const [load, setLoad] = useState([])
 
@@ -33,17 +33,17 @@ export function Emissor() {
     event.preventDefault()
 
     try {
-      const response = await api.get(`/emissores/${id}`, {
+      const response = await api.get(`/emissores/${nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       setEmissor(response.data)
 
-      setId('')
+      setNome('')
     } catch (err) {
       alert(err.response.data.error)
-      setId('')
+      setNome('')
     }
   }
 
@@ -100,8 +100,8 @@ export function Emissor() {
             <input
               type="text"
               placeholder="Buscar Emissor"
-              onChange={event => setId(event.target.value)}
-              value={id}
+              onChange={event => setNome(event.target.value)}
+              value={nome}
             />
             <button onClick={handleSearch}>
               <FaIcons.FaSearch />

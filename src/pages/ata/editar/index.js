@@ -229,7 +229,7 @@ export function AtaEditar() {
                                     </div>
                                 </div>
                                 <button className="button" onClick={handleUpdate}>
-                                    COnfirmar Edição
+                                    Confirmar Edição
                                 </button>
                             </form>
                         )

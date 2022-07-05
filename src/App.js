@@ -18,6 +18,7 @@ import { SetorEditar } from './pages/setor/editar/index'
 import { Ata } from './pages/ata/index'
 import { AtaCadastro } from './pages/ata/cadastrar/index'
 import { AtaEditar } from './pages/ata/editar/index'
+import { AtaView } from './pages/ata/view/index'
 
 
 import './App.css'
@@ -58,6 +59,7 @@ function App() {
           <Route path="/atas" element={<Private> <Ata /> </Private>} />
           <Route path="/atas/cadastrar" element={<Private> <AtaCadastro /> </Private>} />
           <Route path="/atas/editar" element={<Private> <AtaEditar /> </Private>} />
+          <Route path="/atas/view" element={<Private> <AtaView /> </Private>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

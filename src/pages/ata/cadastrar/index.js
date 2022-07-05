@@ -117,9 +117,15 @@ export function AtaCadastro() {
         setParticipantes([...participantes])
     }
     const handleRemoveInputParticipante = (position) => {
+        if(position === 0){
+            setParticipantes([...participantes.filter((_, index) => index == position)])
+        }else
         setParticipantes([...participantes.filter((_, index) => index !== position)])
     }
     const handleRemoveInputPalavra = (position) => {
+        if(position === 0){
+            setPalavrasChave([...palavrasChave.filter((_, index) => index == position)])
+        }else
         setPalavrasChave([...palavrasChave.filter((_, index) => index !== position)])
     }
    
@@ -242,13 +248,13 @@ export function AtaCadastro() {
 
 
                         </div>
-                        <div className='align-2'>
-                        
-                            <div className="palavrachave">
-                                
-                                <button className='add' onClick={addInputPalavra}>
+                        <div className='align-3'>
+                        <button className='add' onClick={addInputPalavra}>
                                     <IosIcons.IoIosAddCircleOutline />
                                 </button>
+                            <div className="palavrachave">
+                                
+                                
                                 
                                 
 
@@ -273,12 +279,13 @@ export function AtaCadastro() {
 
 
                             </div>
-                            
-
-                            <div className="participante">
-                                <button className='add' onClick={addInputParticipante}>
+                            <div></div>
+                            <button className='add' onClick={addInputParticipante}>
                                     <IosIcons.IoIosAddCircleOutline />
                                 </button>
+
+                            <div className="participante">
+                               
 
                                 {participantes.map((participantes, index) => (
 
@@ -294,10 +301,15 @@ export function AtaCadastro() {
                                                 onChange={(e) => handleChangeParticipante(e, index)}
                                                 required
                                             />
-
-                                            <button
-                                               
-                                                onClick={() => { handleRemoveInputParticipante(index) }}><IosIcons.IoIosRemoveCircleOutline/></button>
+                                        
+                                            
+                                            
+                                                <button 
+                                                    
+                                                  onClick={() => { handleRemoveInputParticipante(index) }}><IosIcons.IoIosRemoveCircleOutline/>
+                                               </button>
+                                           
+                                            
                                         </div>
                                     </div>
                                 ))}

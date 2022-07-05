@@ -91,11 +91,8 @@ button.logoff {
   font-size: 30px;
 }
 .logoff{
-  margin-top: 100px;
-  
-display: flex;
-flex-direction: column;
-
+position: absolute;  
+bottom: 0px;
 }
 .logoff svg{
   font-size: 25px;
