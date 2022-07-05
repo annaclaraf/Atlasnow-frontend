@@ -53,6 +53,16 @@ export function Ata() {
     navigate('/home')
   }
   async function paginaCadastro() {
+    const response = await api.get('/setor', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+    if(response.data.length == 0){
+      alert('Nenhum setor cadastrado no sistema.')
+      return
+    }
     navigate('/atas/cadastrar')
   }
 

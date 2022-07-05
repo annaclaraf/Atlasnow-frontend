@@ -51,6 +51,16 @@ export function Emissor() {
     navigate('/home')
   }
   async function paginaCadastro() {
+    const response = await api.get('/funcionarios', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+    if(response.data.length == 0){
+      alert('Nenhum funcionario cadastrado no sistema.')
+      return
+    }
     navigate('/emissor/cadastrar')
   }
   async function Visualizar(id) {
